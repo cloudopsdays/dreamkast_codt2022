@@ -62,7 +62,7 @@ jobs:
       - name: Checkout dreamkast-infra
         uses: actions/checkout@v3
         with:
-          repository: cloudnativedaysjp/dreamkast-infra
+          repository: cloudopsdays/dreamkast-infra_codt2022
           path: dreamkast-infra
           token: ${{ steps.generate_token.outputs.token }}
 
@@ -91,7 +91,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ steps.generate_token.outputs.token }}
-          repository: cloudnativedaysjp/dreamkast-infra
+          repository: cloudopsdays/dreamkast-infra_codt2022
           directory: dreamkast-infra
           branch: staging/dk-main
 
@@ -101,16 +101,16 @@ jobs:
           github-token: ${{ steps.generate_token.outputs.token }}
           script: |
             const pr = await github.pulls.create({
-              owner: "cloudnativedaysjp",
-              repo: "dreamkast-infra",
+              owner: "cloudopsdays",
+              repo: "dreamkast-infra_codt2022",
               title: "Automated PR (staging/dk-main)",
               body: "**this PR is automatically created & merged**",
               head: "staging/dk-main",
               base: "main"
             });
             await github.pulls.merge({
-              owner: "cloudnativedaysjp",
-              repo: "dreamkast-infra",
+              owner: "cloudopsdays",
+              repo: "dreamkast-infra_codt2022",
               pull_number: pr.data.number,
               merge_method: "merge",
             });
