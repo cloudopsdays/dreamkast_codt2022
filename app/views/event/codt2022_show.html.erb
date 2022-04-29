@@ -1,13 +1,9 @@
 <div id="<%= @conference.abbr %>" >
-  <div class="background">
-    <video src="https://cloudnativedaysjp-website.s3-ap-northeast-1.amazonaws.com/background.mp4" autoplay loop muted></video>
-  </div>
   <div class="contents">
     <!-- Masthead-->
     <header>
         <div class="container">
             <div class="row">
-                <%= image_tag("cndo2021/masthead.png", id: "masthead")   %>
             </div>
         </div>
     </header>
@@ -35,19 +31,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- About-->
-    <section class="page-section bg-primary" id="about">
-      <%= render 'event/partial/about', conference: @conference %>
-    </section>
-
-    <section class="page-section" id="sponsors">
-      <%= render 'event/partial/sponsors', conference: @conference %>
-    </section>
-
-    <section class="page-section bg-secondary" id="information">
-      <%= render 'event/partial/information', conference: @conference %>
     </section>
   </div>
 </div>
