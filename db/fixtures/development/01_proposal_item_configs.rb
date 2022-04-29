@@ -1,1 +1,0 @@
-ProposalItemConfig.seed()

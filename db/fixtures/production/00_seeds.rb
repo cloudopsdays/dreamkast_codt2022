@@ -29,27 +29,3 @@ ConferenceDay.seed(
   {id: 1, date: "2022-07-25", start_time: "13:00", end_time: "19:00", conference_id: 1, internal: false},
   {id: 2, date: "2022-05-31", start_time: "19:00", end_time: "21:00", conference_id: 1, internal: true} #Pre event
 )
-
-Industry.seed()
-
-FormItem.seed()
-
-Track.seed()
-
-TalkCategory.seed()
-
-TalkDifficulty.seed()
-
-TalkTime.seed()
-
-RegisteredTalk.seed()
-
-Video.seed()
-
-Link.seed()
-
-Video.seed()
-
-Link.seed()
-
-Announcement.seed()
