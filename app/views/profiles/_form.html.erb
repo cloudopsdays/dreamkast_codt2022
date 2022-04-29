@@ -22,36 +22,31 @@
     </div>
   </div>
 
-
-
   <div class="form-row form-group">
-    <%= form.label :industry_id, "業種" %>*
-    <%= form.collection_select :industry_id, Industry.all, :id, :name, {prompt: ""}, {class: "form-control", requierd: true} %>
+    <div class="col-12 col-md-6">
+      <%= form.label :last_name_kana, "姓(カナ)" %>*
+      <%= form.text_field :last_name_kana, required: true, class: "form-control", placeholder: "クラウド" %>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <%= form.label :first_name_kana, "名(カナ)" %>*
+      <%= form.text_field :first_name_kana, required: true, class: "form-control", placeholder: "タロウ" %>
+    </div>
   </div>
 
   <div class="form-row form-group">
     <%= form.label :occupation, "職種" %>*
-    <%= form.text_field :occupation, required: true, class: "form-control", placeholder: "SRE / インフラエンジニア / アプリケーション開発　など" %>
+    <%= form.select :occupation, @occupations, {prompt: ''}, {required: true, class: "form-control"} %>
   </div>
 
   <div class="form-row form-group">
     <%= form.label :company_name, "勤務先名/学校名" %>*
-    <%= form.text_field :company_name, required: true, class: "form-control", placeholder: "クラウドネイティブデイズ株式会社" %>
+    <%= form.text_field :company_name, required: true, class: "form-control", placeholder: "クラウドオペレーターデイズ株式会社" %>
   </div>
 
   <div class="form-row form-group">
     <%= form.label :company_email, "勤務先メールアドレス" %>*
     <%= form.email_field :company_email, required: true, class: "form-control", placeholder: "mail@example.com" %>
-  </div>
-
-  <div class="form-row form-group">
-    <%= form.label :company_address_prefecture_id, "勤務先都道府県(国外の場合は `国外` を選択してください)" %>*
-    <%= form.collection_select :company_address_prefecture_id, CompanyAddressPrefecture.all, :id, :name, {prompt: ""}, {required: true, class: "form-control"} %>
-  </div>
-
-  <div class="form-row form-group">
-    <%= form.label :company_address, "勤務先住所" %>*
-    <%= form.text_field :company_address, required: true, class: "form-control", placeholder: "港区○○" %>
   </div>
 
   <div class="form-row form-group">
@@ -72,45 +67,18 @@
   <% if action_name == "new" %>
   <div class="privacy_policy">
     <%= markdown @conference.privacy_policy %>
+  </div>
+  <br />
+  <p>主催者の提示する <a href="/codt2022/privacy" target="_blank">個人情報保護方針(プライバシー ポリシー)</a> をご確認のうえ、ご同意いただき お申し込みを確定してください。</p>
 
-    <% if @event == "cndt2020" %>
-    <h4>IBMおよびIBMの⼦会社、関連会社からの情報提供</h4>
-    <p>
-    IBMおよび<a href="https://www.ibm.com/ibm/jp/ja/keireki.pdf#subsidiaries" target="_blank">IBMの⼦会社、関連会社</a>から、製品、サービス、オファリングに関する情報をお送りさせていただく場合があります。
-    </p>
-    <p>
-    マーケティングに関する同意は、<a href="https://www.ibm.com/account/reg/jp-ja/signup?formid=urx-42537" target="_blank">opt-out request</a>を送信することにより、いつでも取り消すことができます。また、該当のEメール内の、購読を中⽌するためのリンクをクリックすることで、マーケティングに関するEメールの受信を中⽌することができます。 処理に関する詳しい情報は、<a href="https://www.ibm.com/privacy/jp/ja/" target="_blank">IBMプライバシー・ステートメント</a>をご覧ください。このフォームを送信することで、私はIBMプライバシー・ステートメントを読み、これを理解したものとします。
-    </p>
-    <div class="form-check">
-      <%= form.check_box :require_email, {class: "form-check-input"}, true, false %>
-      <label class="form-check-label" for="require_email">e-メールを希望する</label>
-    </div>
-    <div class="form-check">
-      <%= form.check_box :require_tel, {class: "form-check-input"}, true, false %>
-      <label class="form-check-label" for="require_tel">電話を希望する</label>
-    </div>
-    <div class="form-check">
-      <%= form.check_box :require_posting, {class: "form-check-input"}, true, false %>
-      <label class="form-check-label" for="require_posting">郵便を希望する</label>
-    </div>
-    <% end %>
-
-    <% if ["cndt2020", "cndo2021", "cicd2021", "cndt2021"].include?(@event) %>
-    <h4 class="mt-3">日本マイクロソフト株式会社/Microsoft Corporation</h4>
-    <p>
-    日本マイクロソフト株式会社から情報提供を希望される場合、申し込み者情報に記載いただいた内容を日本マイクロソフト株式会社へ提供させていただきます。利用目的は当該企業の製品・サービスに関する情報またはマーケティング活動に関する情報をお知らせすることです。個人情報の取り扱いにつきましては、日本マイクロソフト株式会社のプライバシーポリシーに準拠します。
-    </p>
-    <div class="form-check">
-      <%= form.check_box :agree_ms, {class: "form-check-input"}, true, false %>
-      <label class="form-check-label" for="agree_ms">日本マイクロソフト株式会社/Microsoft Corporationへの個人情報提供に同意する</label>
-    </div>
-    <p>(<a href="https://privacy.microsoft.com/ja-jp/privacystatement/" target="_blank">プライバシーステートメント</a>)</p>
-    <p></p>
-    <% end %>
+  <div class="form-check">
+    <%= form.check_box :agreement, {required: true, class: "form-check-input"}, true, false %>
+    <label class="form-check-label" for="agreement">同意する</label>
   </div>
   <% end %>
+  <br />
 
   <div class="form-row form-group justify-content-md-center py-20">
-    <%= form.submit "個人情報保護方針に同意して参加登録", class: "btn btn-primary form-control" %>
+    <%= form.submit "登録", class: "btn btn-primary form-control" %>
   </div>
 <% end %>
