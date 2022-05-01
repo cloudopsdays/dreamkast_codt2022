@@ -22,6 +22,7 @@
 #  expected_participants :json
 #  execution_phases      :json
 #  sponsor_id            :integer
+#  order                 :integer
 #
 # Indexes
 #

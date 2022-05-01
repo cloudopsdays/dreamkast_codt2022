@@ -5,16 +5,16 @@ describe AdminController, type: :request do
   let(:roles) { [] }
 
   before do
-    create(:cndt2020)
+    create(:codt2022)
   end
 
   describe 'GET admin#show' do
     context "user doesn't logged in" do
       it 'redirect to event top page' do
-        get admin_path(event: 'cndt2020')
+        get admin_path(event: 'codt2022')
         expect(response).to_not(be_successful)
         expect(response).to(have_http_status('302'))
-        expect(response).to(redirect_to('/cndt2020'))
+        expect(response).to(redirect_to('/codt2022'))
       end
     end
 
@@ -33,7 +33,7 @@ describe AdminController, type: :request do
       context 'user is not registered' do
         it 'redirect to //registration' do
           skip 'TODO: `//registration` にリダイレクトされて名前解決できずにエラーになるので修正が必要'
-          get admin_path(event: 'cndt2020')
+          get admin_path(event: 'codt2022')
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
           expect(response).to(redirect_to('//registration'))
@@ -42,14 +42,14 @@ describe AdminController, type: :request do
 
       context 'user is registered' do
         before do
-          create(:alice, :on_cndt2020)
+          create(:alice, :on_codt2022)
         end
 
         context 'user is admin' do
-          let(:roles) { ['CNDT2020-Admin'] }
+          let(:roles) { ['CODT2022-Admin'] }
 
           it 'returns a success response' do
-            get admin_path(event: 'cndt2020')
+            get admin_path(event: 'codt2022')
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
           end
@@ -57,7 +57,7 @@ describe AdminController, type: :request do
 
         context 'user is not admin' do
           it 'returns a success response' do
-            get admin_path(event: 'cndt2020')
+            get admin_path(event: 'codt2022')
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('403'))
           end
@@ -69,10 +69,10 @@ describe AdminController, type: :request do
   describe 'GET admin#users' do
     context "user doesn't logged in" do
       it 'redirect to event top page' do
-        get admin_users_path(event: 'cndt2020')
+        get admin_users_path(event: 'codt2022')
         expect(response).to_not(be_successful)
         expect(response).to(have_http_status('302'))
-        expect(response).to(redirect_to('/cndt2020'))
+        expect(response).to(redirect_to('/codt2022'))
       end
     end
 
@@ -93,14 +93,14 @@ describe AdminController, type: :request do
 
       context 'user is registered' do
         before do
-          create(:alice, :on_cndt2020)
+          create(:alice, :on_codt2022)
         end
 
         context 'user is admin' do
-          let(:roles) { ['CNDT2020-Admin'] }
+          let(:roles) { ['CODT2022-Admin'] }
 
           it 'returns a success response' do
-            get admin_users_path(event: 'cndt2020')
+            get admin_users_path(event: 'codt2022')
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
           end
@@ -108,7 +108,7 @@ describe AdminController, type: :request do
 
         context 'user is not admin' do
           it 'returns a success response' do
-            get admin_users_path(event: 'cndt2020')
+            get admin_users_path(event: 'codt2022')
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('403'))
           end

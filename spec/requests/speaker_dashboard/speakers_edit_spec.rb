@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 describe SpeakerDashboard::SpeakersController, type: :request do
-  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CNDT2020-Admin'] } } } }
+  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CODT2022-Admin'] } } } }
   describe 'GET speakers#edit' do
     before do
-      create(:cndt2020)
+      create(:codt2022)
     end
 
     context "user doesn't log in" do
       context "user doesn't register" do
         context "get anyone's edit page" do
           it 'redirect to speaker_dashboard' do
-            get '/cndt2020/speaker_dashboard/speakers/1/edit'
+            get '/codt2022/speaker_dashboard/speakers/1/edit'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/speaker_dashboard'))
+            expect(response).to(redirect_to('/codt2022/speaker_dashboard'))
           end
         end
       end
@@ -27,19 +27,19 @@ describe SpeakerDashboard::SpeakersController, type: :request do
 
         context 'get my edit page' do
           it 'redirect to speaker_dashboard' do
-            get '/cndt2020/speaker_dashboard/speakers/1/edit'
+            get '/codt2022/speaker_dashboard/speakers/1/edit'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/speaker_dashboard'))
+            expect(response).to(redirect_to('/codt2022/speaker_dashboard'))
           end
         end
 
         context "get other's edit page" do
           it 'redirect to speaker_dashboard' do
-            get '/cndt2020/speaker_dashboard/speakers/2/edit'
+            get '/codt2022/speaker_dashboard/speakers/2/edit'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/speaker_dashboard'))
+            expect(response).to(redirect_to('/codt2022/speaker_dashboard'))
           end
         end
       end
@@ -54,7 +54,7 @@ describe SpeakerDashboard::SpeakersController, type: :request do
 
         context 'get others edit page' do
           it 'returns a 403' do
-            get '/cndt2020/speaker_dashboard/speakers/2/edit'
+            get '/codt2022/speaker_dashboard/speakers/2/edit'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('403'))
           end
@@ -70,7 +70,7 @@ describe SpeakerDashboard::SpeakersController, type: :request do
 
         describe 'get my edit page' do
           it 'returns a success response with event top page' do
-            get '/cndt2020/speaker_dashboard/speakers/1/edit'
+            get '/codt2022/speaker_dashboard/speakers/1/edit'
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
           end
@@ -78,7 +78,7 @@ describe SpeakerDashboard::SpeakersController, type: :request do
 
         describe 'get others edit page' do
           it 'return 403' do
-            get '/cndt2020/speaker_dashboard/speakers/2/edit'
+            get '/codt2022/speaker_dashboard/speakers/2/edit'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('403'))
           end

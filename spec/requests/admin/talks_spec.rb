@@ -5,16 +5,16 @@ describe Admin::SpeakersController, type: :request do
   let(:roles) { [] }
 
   before do
-    create(:cndt2020)
+    create(:codt2022)
   end
 
   describe 'GET :event/admin/talks#index' do
     context "user doesn't logged in" do
       it 'redirect to event top page' do
-        get admin_talks_path(event: 'cndt2020')
+        get admin_talks_path(event: 'codt2022')
         expect(response).to_not(be_successful)
         expect(response).to(have_http_status('302'))
-        expect(response).to(redirect_to('/cndt2020'))
+        expect(response).to(redirect_to('/codt2022'))
       end
     end
 
@@ -42,14 +42,14 @@ describe Admin::SpeakersController, type: :request do
 
       context 'user is registered' do
         before do
-          create(:alice, :on_cndt2020)
+          create(:alice, :on_codt2022)
         end
 
         context 'user is admin' do
-          let(:roles) { ['CNDT2020-Admin'] }
+          let(:roles) { ['CODT2022-Admin'] }
 
           it 'returns a success response' do
-            get admin_talks_path(event: 'cndt2020')
+            get admin_talks_path(event: 'codt2022')
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
           end
@@ -57,7 +57,7 @@ describe Admin::SpeakersController, type: :request do
 
         context 'user is not admin' do
           it 'returns a success response' do
-            get admin_talks_path(event: 'cndt2020')
+            get admin_talks_path(event: 'codt2022')
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('403'))
           end

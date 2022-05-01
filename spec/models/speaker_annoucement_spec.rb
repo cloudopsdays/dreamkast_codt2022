@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe(SpeakerAnnouncement, type: :model) do
-  let!(:conf) { create(:cndt2020) }
+  let!(:conf) { create(:codt2022) }
   let!(:speaker) { create(:speaker_mike) }
   let!(:default_param) {
     {

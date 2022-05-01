@@ -25,11 +25,11 @@ FactoryBot.define do
     conference_id { 1 }
     sponsor_id { 1 }
 
-    trait :on_cndt2020 do
+    trait :on_codt2022 do
       conference_id { 1 }
     end
 
-    trait :on_cndo2021 do
+    trait :on_o11y2022 do
       conference_id { 2 }
     end
   end
@@ -41,11 +41,11 @@ FactoryBot.define do
     name { 'bob' }
     conference_id { 1 }
 
-    trait :on_cndt2020 do
+    trait :on_codt2022 do
       conference_id { 1 }
     end
 
-    trait :on_cndo2021 do
+    trait :on_o11y2022 do
       conference_id { 2 }
     end
   end

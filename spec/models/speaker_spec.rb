@@ -22,7 +22,7 @@
 require 'rails_helper'
 
 RSpec.describe(Speaker, type: :model) do
-  before { create(:cndt2020) }
+  before { create(:codt2022) }
 
   describe '#has_accepted_proposal?' do
     subject { speaker.has_accepted_proposal? }

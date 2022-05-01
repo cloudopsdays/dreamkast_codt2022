@@ -121,7 +121,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is registered' do
-        let!(:conference) { create(:cndt2020, :registered) }
+        let!(:conference) { create(:codt2022, :registered) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_published, false
@@ -135,7 +135,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is opened' do
-        let!(:conference) { create(:cndt2020, :opened) }
+        let!(:conference) { create(:codt2022, :opened) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_published, false
@@ -149,7 +149,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is closed' do
-        let!(:conference) { create(:cndt2020, :closed) }
+        let!(:conference) { create(:codt2022, :closed) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_published, false
@@ -163,7 +163,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is archived' do
-        let!(:conference) { create(:cndt2020, :archived) }
+        let!(:conference) { create(:codt2022, :archived) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_published, false
@@ -183,7 +183,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is registered' do
-        let!(:conference) { create(:cndt2020, :registered) }
+        let!(:conference) { create(:codt2022, :registered) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_published, false
@@ -197,7 +197,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is opened' do
-        let!(:conference) { create(:cndt2020, :opened) }
+        let!(:conference) { create(:codt2022, :opened) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_published, false
@@ -211,7 +211,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is closed' do
-        let!(:conference) { create(:cndt2020, :closed) }
+        let!(:conference) { create(:codt2022, :closed) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_published, false
@@ -225,7 +225,7 @@ RSpec.describe(TalksController, type: :controller) do
       end
 
       context 'conference is archived' do
-        let!(:conference) { create(:cndt2020, :archived) }
+        let!(:conference) { create(:codt2022, :archived) }
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_published, false

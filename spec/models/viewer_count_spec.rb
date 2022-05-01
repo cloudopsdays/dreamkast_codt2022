@@ -24,7 +24,7 @@ RSpec.describe(ViewerCount, type: :model) do
   describe 'get_latest_number_of_viewer' do
     context 'with opened conference' do
       before do
-        create(:cndt2020, :opened)
+        create(:codt2022, :opened)
         create(:talk1)
         create(:talk3)
         create_list(:viewer_count, 3, :talk1)
@@ -59,7 +59,7 @@ RSpec.describe(ViewerCount, type: :model) do
     end
     context 'with registered conference' do
       before do
-        create(:cndt2020, :registered)
+        create(:codt2022, :registered)
         create(:talk1)
         create(:talk3)
         create(:video, :on_air, :talk1)

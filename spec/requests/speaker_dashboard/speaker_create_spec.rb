@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe(SpeakerDashboard::SpeakersController, type: :request) do
-  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CNDT2020-Admin'] } } } }
+  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CODT2022-Admin'] } } } }
   context 'user already logged in' do
     context "user doesn't registered" do
       before do
@@ -16,7 +16,7 @@ RSpec.describe(SpeakerDashboard::SpeakersController, type: :request) do
       end
 
       describe 'register speaker and proposal without session time selection' do
-        let(:conference) { create(:cndt2020, :registered, :speaker_entry_enabled) }
+        let(:conference) { create(:codt2022, :registered, :speaker_entry_enabled) }
         let(:execution_phase) { create(:proposal_item_configs_execution_phase, conference: conference) }
         let(:assumed_visitor) { create(:proposal_item_configs_assumed_visitor, conference: conference) }
         let(:whether_it_can_be_published) { create(:proposal_item_configs_whether_it_can_be_published, :all_ok, conference: conference) }
@@ -49,11 +49,11 @@ RSpec.describe(SpeakerDashboard::SpeakersController, type: :request) do
                 }
             }
           }
-          post('/cndt2020/speaker_dashboard/speakers', params: { speaker: params })
+          post('/codt2022/speaker_dashboard/speakers', params: { speaker: params })
 
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020/speaker_dashboard'))
+          expect(response).to(redirect_to('/codt2022/speaker_dashboard'))
 
           speaker = Speaker.find_by(name: 'Takaishi Ryo')
           expect(speaker).to_not(be_nil)

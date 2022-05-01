@@ -3,12 +3,12 @@ require 'rails_helper'
 describe ProfilesController, type: :request do
   describe 'GET /registration' do
     before do
-      create(:cndt2020)
+      create(:codt2022)
     end
 
     describe 'not logged in' do
       it 'redirect to event top page' do
-        get '/cndt2020/registration'
+        get '/codt2022/registration'
         expect(response).to(be_successful)
         expect(response).to(have_http_status('200'))
         expect(response.body).to(include('ログイン'))
@@ -23,7 +23,7 @@ describe ProfilesController, type: :request do
       end
 
       it "doesn't have timetable and speakers links" do
-        get '/cndt2020/registration'
+        get '/codt2022/registration'
         expect(response).to(be_successful)
         expect(response).to(have_http_status('200'))
         expect(response.body).to_not(include('Timetable'))
@@ -34,15 +34,15 @@ describe ProfilesController, type: :request do
       subject(:user_session) { { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'mock', 'https://cloudnativedays.jp/roles' => '' } } } } }
 
       before do
-        create(:alice, :on_cndt2020)
+        create(:alice, :on_codt2022)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(user_session[:userinfo]))
       end
 
       it 'redirect to timetables' do
-        get '/cndt2020/registration'
+        get '/codt2022/registration'
         expect(response).to_not(be_successful)
         expect(response).to(have_http_status('302'))
-        expect(response.body).to(redirect_to('/cndt2020/dashboard'))
+        expect(response.body).to(redirect_to('/codt2022/dashboard'))
       end
     end
 
@@ -70,9 +70,9 @@ describe ProfilesController, type: :request do
 
       it 'is created 4 agreements when user select 4 checkbox' do
         expect do
-          post('/cndt2020/profiles', params: { profile: profiles_params.merge(agreement_params) })
+          post('/codt2022/profiles', params: { profile: profiles_params.merge(agreement_params) })
         end.to(change(Agreement, :count).by(+4))
-        expect(response.body).to(redirect_to('/cndt2020/timetables'))
+        expect(response.body).to(redirect_to('/codt2022/timetables'))
       end
     end
   end

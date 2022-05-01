@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe(TracksController, type: :request) do
-  subject { get '/cndt2020/dashboard' }
+  subject { get '/codt2022/dashboard' }
   let!(:session) { { userinfo: { info: { email: 'alice@example.com', extra: { sub: 'aaa' } }, extra: { raw_info: { sub: 'aaa', 'https://cloudnativedays.jp/roles' => roles } } } } }
   let(:roles) { [] }
 
   describe 'GET /:event/dashboard' do
     describe 'logged in and registered' do
       before do
-        create(:cndt2020)
-        create(:alice, :on_cndt2020)
+        create(:codt2022)
+        create(:alice, :on_codt2022)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
       end
 
       context 'user is admin' do
-        let(:roles) { ['CNDT2020-Admin'] }
+        let(:roles) { ['CODT2022-Admin'] }
 
         it 'return a success response' do
           subject
@@ -24,7 +24,7 @@ RSpec.describe(TracksController, type: :request) do
 
         it 'link to admin is displayed' do
           subject
-          expect(response.body).to(include('<a class="dropdown-item" href="/cndt2020/admin">管理画面</a>'))
+          expect(response.body).to(include('<a class="dropdown-item" href="/codt2022/admin">管理画面</a>'))
         end
 
         context 'user is speaker' do
@@ -97,7 +97,7 @@ RSpec.describe(TracksController, type: :request) do
 
     describe 'not logged in' do
       before do
-        create(:cndt2020)
+        create(:codt2022)
       end
 
       context "get exists event's dashboard" do
@@ -105,7 +105,7 @@ RSpec.describe(TracksController, type: :request) do
           subject
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020'))
+          expect(response).to(redirect_to('/codt2022'))
         end
       end
 
@@ -122,41 +122,41 @@ RSpec.describe(TracksController, type: :request) do
   describe 'GET /:event/tracks' do
     describe 'logged in and registered' do
       before do
-        create(:cndt2020, :opened)
-        create(:alice, :on_cndt2020)
+        create(:codt2022, :opened)
+        create(:alice, :on_codt2022)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
       end
 
       context 'when user access to dashboard' do
         it 'return a success response' do
-          get '/cndt2020/tracks'
+          get '/codt2022/tracks'
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020/ui/'))
+          expect(response).to(redirect_to('/codt2022/ui/'))
         end
       end
 
       context 'when user access to root page' do
         it 'redirect to tracks' do
-          get '/cndt2020'
+          get '/codt2022'
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020/dashboard'))
+          expect(response).to(redirect_to('/codt2022/dashboard'))
         end
       end
     end
 
     describe 'not logged in' do
       before do
-        create(:cndt2020)
+        create(:codt2022)
       end
 
       context "get exists event's dashboard" do
         it 'redirect to top page a success response' do
-          get '/cndt2020/tracks'
+          get '/codt2022/tracks'
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020'))
+          expect(response).to(redirect_to('/codt2022'))
         end
       end
     end
