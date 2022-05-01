@@ -88,7 +88,7 @@ class Profile < ApplicationRecord
           speaker.company_address,
           speaker.company_tel,
           speaker.department,
-          speaker.position,
+          speaker.position
         ]
       end
     end
