@@ -148,18 +148,18 @@ class Admin::TalksController < ApplicationController
     if params[:file]
       message = Talk.import(params[:file])
       notice = message.join(' / ')
-      redirect_to('/admin/talks', notice: notice)
+      redirect_to("/#{@conference.abbr}/admin/talks", notice: notice)
     else
-      redirect_to('/admin/talks', notice: 'アップロードするファイルを選択してください')
+      redirect_to("/#{@conference.abbr}/admin/talks", notice: 'アップロードするファイルを選択してください')
     end
   end
 
   def bulk_insert_talks_speaker
     if params[:file]
       TalksSpeaker.import(params[:file])
-      redirect_to('/admin/talks', notice: "CSV\u306E\u8AAD\u307F\u8FBC\u307F\u304C\u5B8C\u4E86\u3057\u307E\u3057\u305F")
+      redirect_to("/#{@conference.abbr}/admin/talks", notice: "CSV\u306E\u8AAD\u307F\u8FBC\u307F\u304C\u5B8C\u4E86\u3057\u307E\u3057\u305F")
     else
-      redirect_to('/admin/talks', notice: 'アップロードするファイルを選択してください')
+      redirect_to("/#{@conference.abbr}/admin/talks", notice: 'アップロードするファイルを選択してください')
     end
   end
 end

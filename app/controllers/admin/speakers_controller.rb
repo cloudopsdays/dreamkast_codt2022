@@ -40,7 +40,7 @@ class Admin::SpeakersController < ApplicationController
                else
                  message.join(' / ')
                end
-      redirect_to('/admin/speakers', notice: notice)
+      redirect_to("/#{@conference.abbr}/admin/speakers", notice: notice)
     else
       redirect_to(admin_speakers_path, notice: 'アップロードするファイルを選択してください')
     end
