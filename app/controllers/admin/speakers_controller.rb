@@ -32,6 +32,20 @@ class Admin::SpeakersController < ApplicationController
     end
   end
 
+  def bulk_insert_speakers
+    if params[:file]
+      message = Speaker.import(params[:file])
+      notice = if message.size.zero?
+                 "CSV\u306E\u8AAD\u307F\u8FBC\u307F\u304C\u5B8C\u4E86\u3057\u307E\u3057\u305F"
+               else
+                 message.join(' / ')
+               end
+      redirect_to('/admin/speakers', notice: notice)
+    else
+      redirect_to(admin_speakers_path, notice: 'アップロードするファイルを選択してください')
+    end
+  end
+
   def export_speakers
     all = Speaker.export
     filename = './tmp/speaker.csv'
