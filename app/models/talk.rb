@@ -105,7 +105,12 @@ class Talk < ApplicationRecord
         talk = new
         talk.attributes = row.to_hash.slice(*updatable_attributes)
         unless talk.save
-          message << "Error id: #{talk.id} - #{talk.errors.messages}"
+          message << "Error talk id: #{talk.id} - #{talk.errors.messages}"
+        end
+
+        proposal = Proposal.new(conference_id: talk.conference_id, talk_id: talk.id, status: 1)
+        unless proposal.save
+          message << "Error proposal id: #{proposal.id}, talk id: #{talk.id} - #{proposal.errors.messages}"
         end
       end
       if message.empty?

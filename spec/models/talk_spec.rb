@@ -183,6 +183,11 @@ RSpec.describe(Talk, type: :model) do
     it 'is contains successful message' do
       expect(@message[0]).to(include('成功'))
     end
+
+    it 'has accepted proposal' do
+      talk = Talk.find(1)
+      expect(talk.proposal.accepted?).to(be_truthy)
+    end
   end
 
   describe 'when import invalid CSV' do
@@ -201,7 +206,7 @@ RSpec.describe(Talk, type: :model) do
     end
 
     it 'is contains error massage' do
-      expect(@message[0]).to(include('Error id: 8'))
+      expect(@message[0]).to(include('Error talk id: 8'))
     end
   end
 end
