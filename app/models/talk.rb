@@ -95,6 +95,33 @@ class Talk < ApplicationRecord
     where.not(sponsor_id: nil)
   }
 
+  def self.import(file)
+    message = []
+
+    transaction do
+      destroy_all
+
+      CSV.foreach(file.path, headers: true) do |row|
+        talk = new
+        talk.attributes = row.to_hash.slice(*updatable_attributes)
+        unless talk.save
+          message << "Error talk id: #{talk.id} - #{talk.errors.messages}"
+        end
+
+        proposal = Proposal.new(conference_id: talk.conference_id, talk_id: talk.id, status: 1)
+        unless proposal.save
+          message << "Error proposal id: #{proposal.id}, talk id: #{talk.id} - #{proposal.errors.messages}"
+        end
+      end
+      if message.empty?
+        message << 'Talk CSVのインポートに成功しました'
+      else
+        raise(ActiveRecord::Rollback)
+      end
+    end
+
+    message
+  end
 
   def self.export_csv(conference, talks, track_name = 'all', date = 'all')
     filename = "#{conference.abbr}_#{date}_#{track_name}"

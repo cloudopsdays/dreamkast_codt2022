@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :conferences, only: [:index, :show, :edit, :update]
       resources :speakers, only: [:index, :edit, :update]
       get 'export_speakers' => 'speakers#export_speakers'
+      post 'bulk_insert_speakers' => 'speakers#bulk_insert_speakers'
       get 'export_profiles' => 'profiles#export_profiles'
       resources :talks, only: [:index]
       resources :proposals, only: [:index]
@@ -51,6 +52,9 @@ Rails.application.routes.draw do
       resource :timetable, only: [:update]
       resources :announcements
       resources :speaker_announcements
+      post 'bulk_insert_talks' => 'talks#bulk_insert_talks'
+      post 'bulk_insert_talks_speaker' => 'talks#bulk_insert_talks_speaker'
+      resources :tracks, only: [:index]
       post 'publish_timetable' => 'timetables#publish'
       post 'close_timetable' => 'timetables#close'
       get 'preview_timetable' => 'timetables#preview'
