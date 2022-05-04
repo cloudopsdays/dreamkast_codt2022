@@ -28,10 +28,10 @@
 #
 
 FactoryBot.define do
-  factory :cndt2020, class: Conference do
+  factory :codt2022, class: Conference do
     id { 1 }
-    name { 'CloudNative Days Tokyo 2020' }
-    abbr { 'cndt2020' }
+    name { 'Cloud Operator Days Tokyo 2022' }
+    abbr { 'codt2022' }
     theme { "\u3053\u308C\u306FTestEventAutumn2020\u306E\u30C6\u30FC\u30DE\u3067\u3059" }
     copyright { "\u00A9 Test Event Autumn 2020 Committee" }
     privacy_policy { 'This is Privacy Policy' }
@@ -40,7 +40,7 @@ FactoryBot.define do
     speaker_entry { 1 }
     attendee_entry { 1 }
     show_timetable { 1 }
-    committee_name { 'CloudNative Days Tokyo 2020 Committee' }
+    committee_name { 'Cloud Operator Days Tokyo 2022' }
     about do
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -96,10 +96,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     end
   end
 
-  factory :cndo2021, class: Conference do
+  factory :o11y2022, class: Conference do
     id { 2 }
     name { 'CloudNative Days Online 2021' }
-    abbr { 'cndo2021' }
+    abbr { 'o11y2022' }
     theme { "\u3053\u308C\u306FTestEventAutumn2020\u306E\u30C6\u30FC\u30DE\u3067\u3059" }
     copyright { "\u00A9 Test Event Autumn 2020 Committee" }
     privacy_policy { 'This is Privacy Policy' }

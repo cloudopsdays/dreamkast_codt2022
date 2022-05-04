@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe SpeakerDashboardsController, type: :request do
-  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CNDT2020-Admin'] } } } }
-  subject { get '/cndt2020/speaker_dashboard' }
+  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CODT2022-Admin'] } } } }
+  subject { get '/codt2022/speaker_dashboard' }
   describe 'GET speaker_dashboards#show' do
     shared_examples_for :request_is_successful do
       it 'request is successful' do
-        get '/cndt2020/speaker_dashboard'
+        get '/codt2022/speaker_dashboard'
         expect(response).to(be_successful)
         expect(response).to(have_http_status('200'))
       end
@@ -14,7 +14,7 @@ describe SpeakerDashboardsController, type: :request do
 
     shared_examples_for :response_includes_proposal_title_and_entry_status do |title, entry_status|
       it 'include information about proposal' do
-        get '/cndt2020/speaker_dashboard'
+        get '/codt2022/speaker_dashboard'
         expect(response.body).to(include(title))
         expect(response.body).to(include(entry_status))
       end
@@ -22,7 +22,7 @@ describe SpeakerDashboardsController, type: :request do
 
     shared_examples_for :response_does_not_include_proposal_title_and_entry_status do |title, entry_status|
       it 'include information about proposal' do
-        get '/cndt2020/speaker_dashboard'
+        get '/codt2022/speaker_dashboard'
         expect(response.body).to_not(include(title))
         expect(response.body).to_not(include(entry_status))
       end
@@ -30,24 +30,24 @@ describe SpeakerDashboardsController, type: :request do
 
     shared_examples_for :response_does_not_include_proposal_title do |title|
       it 'include information about proposal' do
-        get '/cndt2020/speaker_dashboard'
+        get '/codt2022/speaker_dashboard'
         expect(response.body).to_not(include(title))
       end
     end
 
     shared_examples_for :response_includes_edit_button do
       it 'include edit button ' do
-        get '/cndt2020/speaker_dashboard'
+        get '/codt2022/speaker_dashboard'
         expect(response.body).to(include('edit'))
       end
     end
 
-    context 'CNDT2020 is registered' do
-      let!(:cndt2020) { create(:cndt2020, :registered) }
+    context 'codt2022 is registered' do
+      let!(:codt2022) { create(:codt2022, :registered) }
 
       describe "speaker doesn't logged in" do
         it 'returns a success response with speaker dashboard page' do
-          get '/cndt2020/speaker_dashboard'
+          get '/codt2022/speaker_dashboard'
           expect(response).to(be_successful)
           expect(response).to(have_http_status('200'))
           expect(response.body).to(include('スピーカーダッシュボード'))
@@ -61,7 +61,7 @@ describe SpeakerDashboardsController, type: :request do
 
         describe "speaker doesn't registered" do
           it 'returns a success response with event top page' do
-            get '/cndt2020/speaker_dashboard'
+            get '/codt2022/speaker_dashboard'
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
             expect(response.body).to(include('スピーカーダッシュボード'))
@@ -75,7 +75,7 @@ describe SpeakerDashboardsController, type: :request do
           end
 
           it 'response includes header text' do
-            get '/cndt2020/speaker_dashboard'
+            get '/codt2022/speaker_dashboard'
             expect(response.body).to(include('スピーカーダッシュボード'))
           end
           it_should_behave_like :request_is_successful
@@ -84,14 +84,14 @@ describe SpeakerDashboardsController, type: :request do
       end
     end
 
-    context 'CNDT2020 is registered and speaker entry is enabled' do
+    context 'codt2022 is registered and speaker entry is enabled' do
       before do
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(admin_userinfo[:userinfo]))
       end
 
       context 'CFP result is visible' do
         before do
-          create(:cndt2020, :registered, :speaker_entry_enabled, :cfp_result_visible)
+          create(:codt2022, :registered, :speaker_entry_enabled, :cfp_result_visible)
         end
 
         context "speaker doesn't have proposal" do
@@ -148,7 +148,7 @@ describe SpeakerDashboardsController, type: :request do
 
       context 'CFP result is invisible' do
         before do
-          create(:cndt2020, :registered, :speaker_entry_enabled, :cfp_result_invisible)
+          create(:codt2022, :registered, :speaker_entry_enabled, :cfp_result_invisible)
         end
 
         context "speaker doesn't have proposal" do
@@ -195,8 +195,8 @@ describe SpeakerDashboardsController, type: :request do
 
     describe 'speaker announcement showing' do
       before do
-        create(:cndt2020)
-        create(:alice, :on_cndt2020)
+        create(:codt2022)
+        create(:alice, :on_codt2022)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(admin_userinfo[:userinfo]))
       end
       let!(:alice) { create(:speaker_alice) }

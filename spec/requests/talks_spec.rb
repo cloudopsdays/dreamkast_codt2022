@@ -4,10 +4,10 @@ describe TalksController, type: :request do
   subject(:session) { { userinfo: { info: { email: 'alice@example.com', extra: { sub: 'aaa' } }, extra: { raw_info: { sub: 'aaa', 'https://cloudnativedays.jp/roles' => roles } } } } }
   let(:roles) { [] }
 
-  describe 'GET /cndt2020/talks/:id' do
-    context 'CNDT2020 is registered' do
+  describe 'GET /codt2022/talks/:id' do
+    context 'codt2022 is registered' do
       before do
-        create(:cndt2020, :registered)
+        create(:codt2022, :registered)
         create(:talk_category1)
         create(:talk_difficulties1)
       end
@@ -17,7 +17,7 @@ describe TalksController, type: :request do
 
       context "user doesn't logged in" do
         it 'returns a success response' do
-          get '/cndt2020/talks/1'
+          get '/codt2022/talks/1'
           expect(response).to(be_successful)
           expect(response).to(have_http_status('200'))
           expect(response.body).to(include(talk1.abstract))
@@ -25,13 +25,13 @@ describe TalksController, type: :request do
         end
 
         it "doesn't includes vimeo iframe" do
-          get '/cndt2020/talks/1'
+          get '/codt2022/talks/1'
           expect(response).to(be_successful)
           expect(response.body).not_to(include('player.vimeo.com'))
         end
 
         it "doesn't includes slido iframe" do
-          get '/cndt2020/talks/1'
+          get '/codt2022/talks/1'
           expect(response).to(be_successful)
           expect(response.body).not_to(include('sli.do'))
         end
@@ -43,22 +43,22 @@ describe TalksController, type: :request do
             allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return({ info: { email: 'alice@example.com' } }))
           end
 
-          it 'redirect to /cndt2020/registration' do
-            get '/cndt2020/talks/1'
+          it 'redirect to /codt2022/registration' do
+            get '/codt2022/talks/1'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/registration'))
+            expect(response).to(redirect_to('/codt2022/registration'))
           end
         end
 
         context 'user already registered' do
           before do
-            create(:alice, :on_cndt2020)
+            create(:alice, :on_codt2022)
             allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
           end
 
           it 'returns a success response with form' do
-            get '/cndt2020/talks/2'
+            get '/codt2022/talks/2'
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
             expect(response.body).to(include('タイムテーブル'))
@@ -66,13 +66,13 @@ describe TalksController, type: :request do
           end
 
           it 'includes slido iframe if it has slido id' do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to(include('sli.do'))
           end
 
           it 'includes twitter iframe if it not have slido id' do
-            get '/cndt2020/talks/2'
+            get '/codt2022/talks/2'
             expect(response).to(be_successful)
             expect(response.body).to(include('twitter-timeline'))
           end
@@ -83,7 +83,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).not_to(include('player.vimeo.com'))
             end
@@ -95,7 +95,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).not_to(include('player.vimeo.com'))
             end
@@ -104,9 +104,9 @@ describe TalksController, type: :request do
       end
     end
 
-    context 'CNDT2020 is opened' do
+    context 'codt2022 is opened' do
       before do
-        create(:cndt2020, :opened)
+        create(:codt2022, :opened)
         create(:talk_category1)
         create(:talk_difficulties1)
       end
@@ -121,7 +121,7 @@ describe TalksController, type: :request do
           end
 
           it "doesn't includes vimeo iframe" do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).not_to(include('player.vimeo.com'))
           end
@@ -133,7 +133,7 @@ describe TalksController, type: :request do
           end
 
           it "doesn't includes vimeo iframe" do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).not_to(include('player.vimeo.com'))
           end
@@ -143,27 +143,27 @@ describe TalksController, type: :request do
       context 'user logged in' do
         context 'user already registered' do
           before do
-            create(:cndo2021)
-            create(:alice, :on_cndt2020)
-            create(:alice, :on_cndo2021)
+            create(:o11y2022)
+            create(:alice, :on_codt2022)
+            create(:alice, :on_o11y2022)
             allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
             allow_any_instance_of(Talk).to(receive(:archived?).and_return(true))
           end
 
           it ' includes vimeo iframe if video_published is true' do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to(include('player.vimeo.com'))
           end
 
           it "doesn't includes vimeo iframe if video_published is false" do
-            get '/cndt2020/talks/2'
+            get '/codt2022/talks/2'
             expect(response).to(be_successful)
             expect(response.body).not_to(include('player.vimeo.com'))
           end
 
           it 'return 404 when you try to show talk that is not included conference' do
-            get '/cndo2021/talks/1'
+            get '/o11y2022/talks/1'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('404'))
           end
@@ -174,7 +174,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).to(include('player.vimeo.com'))
             end
@@ -186,7 +186,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).not_to(include('player.vimeo.com'))
             end
@@ -195,9 +195,9 @@ describe TalksController, type: :request do
       end
     end
 
-    context 'CNDT2020 is closed' do
+    context 'codt2022 is closed' do
       before do
-        create(:cndt2020, :closed)
+        create(:codt2022, :closed)
         create(:talk_category1)
         create(:talk_difficulties1)
       end
@@ -212,7 +212,7 @@ describe TalksController, type: :request do
           end
 
           it 'includes vimeo iframe' do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to_not(include('player.vimeo.com'))
           end
@@ -224,7 +224,7 @@ describe TalksController, type: :request do
           end
 
           it "doesn't includes vimeo iframe" do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to_not(include('player.vimeo.com'))
           end
@@ -234,27 +234,27 @@ describe TalksController, type: :request do
       context 'user logged in' do
         context 'user already registered' do
           before do
-            create(:cndo2021)
-            create(:alice, :on_cndt2020)
-            create(:alice, :on_cndo2021)
+            create(:o11y2022)
+            create(:alice, :on_codt2022)
+            create(:alice, :on_o11y2022)
             allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
             allow_any_instance_of(Talk).to(receive(:archived?).and_return(true))
           end
 
           it ' includes vimeo iframe if video_published is true' do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to(include('player.vimeo.com'))
           end
 
           it "doesn't includes vimeo iframe if video_published is false" do
-            get '/cndt2020/talks/2'
+            get '/codt2022/talks/2'
             expect(response).to(be_successful)
             expect(response.body).not_to(include('player.vimeo.com'))
           end
 
           it 'return 404 when you try to show talk that is not included conference' do
-            get '/cndo2021/talks/1'
+            get '/o11y2022/talks/1'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('404'))
           end
@@ -265,7 +265,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).to(include('player.vimeo.com'))
             end
@@ -277,7 +277,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).not_to(include('player.vimeo.com'))
             end
@@ -286,9 +286,9 @@ describe TalksController, type: :request do
       end
     end
 
-    context 'CNDT2020 is archived' do
+    context 'codt2022 is archived' do
       before do
-        create(:cndt2020, :archived)
+        create(:codt2022, :archived)
         create(:talk_category1)
         create(:talk_difficulties1)
       end
@@ -303,7 +303,7 @@ describe TalksController, type: :request do
           end
 
           it 'includes vimeo iframe' do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to(include('player.vimeo.com'))
           end
@@ -315,7 +315,7 @@ describe TalksController, type: :request do
           end
 
           it "doesn't includes vimeo iframe" do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to_not(include('player.vimeo.com'))
           end
@@ -325,27 +325,27 @@ describe TalksController, type: :request do
       context 'user logged in' do
         context 'user already registered' do
           before do
-            create(:cndo2021)
-            create(:alice, :on_cndt2020)
-            create(:alice, :on_cndo2021)
+            create(:o11y2022)
+            create(:alice, :on_codt2022)
+            create(:alice, :on_o11y2022)
             allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
             allow_any_instance_of(Talk).to(receive(:archived?).and_return(true))
           end
 
           it ' includes vimeo iframe if video_published is true' do
-            get '/cndt2020/talks/1'
+            get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to(include('player.vimeo.com'))
           end
 
           it "doesn't includes vimeo iframe if video_published is false" do
-            get '/cndt2020/talks/2'
+            get '/codt2022/talks/2'
             expect(response).to(be_successful)
             expect(response.body).not_to(include('player.vimeo.com'))
           end
 
           it 'return 404 when you try to show talk that is not included conference' do
-            get '/cndo2021/talks/1'
+            get '/o11y2022/talks/1'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('404'))
           end
@@ -356,7 +356,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).to(include('player.vimeo.com'))
             end
@@ -368,7 +368,7 @@ describe TalksController, type: :request do
             end
 
             it 'includes vimeo iframe' do
-              get '/cndt2020/talks/1'
+              get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).not_to(include('player.vimeo.com'))
             end
@@ -378,15 +378,15 @@ describe TalksController, type: :request do
     end
   end
 
-  describe 'GET /cndt2020/talks' do
-    let!(:userinfo) { { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { 'https://cloudnativedays.jp/roles' => 'CNDT2020-Admin', sub: '' } } } } }
+  describe 'GET /codt2022/talks' do
+    let!(:userinfo) { { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { 'https://cloudnativedays.jp/roles' => 'CODT2022-Admin', sub: '' } } } } }
 
-    context 'CNDT2020 is registered' do
-      before { create(:cndt2020, :registered) }
+    context 'codt2022 is registered' do
+      before { create(:codt2022, :registered) }
 
       context "user doesn't logged in" do
         it 'returns a success response' do
-          get '/cndt2020/talks'
+          get '/codt2022/talks'
           expect(response).to(be_successful)
         end
       end
@@ -395,43 +395,43 @@ describe TalksController, type: :request do
         before {
           allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
         }
-        it 'redirect to /cndt2020/registration' do
-          get '/cndt2020/talks'
+        it 'redirect to /codt2022/registration' do
+          get '/codt2022/talks'
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020/registration'))
+          expect(response).to(redirect_to('/codt2022/registration'))
         end
 
         context 'when user is registered as speaker' do
           before { create(:speaker_alice) }
           it 'returns a success response' do
-            get '/cndt2020/talks'
+            get '/codt2022/talks'
             expect(response).to(be_successful)
           end
         end
       end
     end
 
-    context 'CNDT2020 is opened' do
-      before  { create(:cndt2020, :opened) }
+    context 'codt2022 is opened' do
+      before  { create(:codt2022, :opened) }
       context "user doesn't registered" do
         before {
           allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
         }
-        it 'redirect to /cndt2020/registration' do
-          get '/cndt2020/talks'
+        it 'redirect to /codt2022/registration' do
+          get '/codt2022/talks'
           expect(response).to_not(be_successful)
           expect(response).to(have_http_status('302'))
-          expect(response).to(redirect_to('/cndt2020/registration'))
+          expect(response).to(redirect_to('/codt2022/registration'))
         end
 
         context 'when user is registered as speaker' do
           before { create(:speaker_alice) }
-          it 'redirect to /cndt2020/registration' do
-            get '/cndt2020/talks'
+          it 'redirect to /codt2022/registration' do
+            get '/codt2022/talks'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/registration'))
+            expect(response).to(redirect_to('/codt2022/registration'))
           end
         end
       end

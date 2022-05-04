@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe SponsorDashboards::SponsorProfilesController, type: :request do
-  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CNDT2020-Admin'] } } } }
+  admin_userinfo = { userinfo: { info: { email: 'alice@example.com' }, extra: { raw_info: { sub: 'aaaa', 'https://cloudnativedays.jp/roles' => ['CODT2022-Admin'] } } } }
   describe 'GET speaker_dashboards/:sponsor_id/sponsor_profiles#new' do
-    let!(:cndt2020) { create(:cndt2020, :registered) }
+    let!(:codt2022) { create(:codt2022, :registered) }
 
     describe "user isn't sponsor's speaker" do
       let!(:sponsor) { create(:sponsor) }
@@ -11,10 +11,10 @@ describe SponsorDashboards::SponsorProfilesController, type: :request do
       describe "sponsor profile isn't created yet" do
         describe "sponsor doesn't logged in" do
           it 'returns a success response with sponsor login page' do
-            get '/cndt2020/sponsor_dashboards/1/sponsor_profiles/new'
+            get '/codt2022/sponsor_dashboards/1/sponsor_profiles/new'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/sponsor_dashboards/login'))
+            expect(response).to(redirect_to('/codt2022/sponsor_dashboards/login'))
           end
         end
 
@@ -31,10 +31,10 @@ describe SponsorDashboards::SponsorProfilesController, type: :request do
           end
 
           it 'returns a success response with new sponsor_profiles page' do
-            get '/cndt2020/sponsor_dashboards/1/sponsor_profiles/new'
+            get '/codt2022/sponsor_dashboards/1/sponsor_profiles/new'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/sponsor_dashboards/login'))
+            expect(response).to(redirect_to('/codt2022/sponsor_dashboards/login'))
           end
         end
       end
@@ -44,10 +44,10 @@ describe SponsorDashboards::SponsorProfilesController, type: :request do
 
         describe "sponsor doesn't logged in" do
           it 'returns a success response with sponsor login page' do
-            get '/cndt2020/sponsor_dashboards/1/sponsor_profiles/new'
+            get '/codt2022/sponsor_dashboards/1/sponsor_profiles/new'
             expect(response).to_not(be_successful)
             expect(response).to(have_http_status('302'))
-            expect(response).to(redirect_to('/cndt2020/sponsor_dashboards/login'))
+            expect(response).to(redirect_to('/codt2022/sponsor_dashboards/login'))
           end
         end
 
@@ -57,7 +57,7 @@ describe SponsorDashboards::SponsorProfilesController, type: :request do
           end
 
           it 'returns a success response with new sponsor_profiles page' do
-            get '/cndt2020/sponsor_dashboards/1/sponsor_profiles/new'
+            get '/codt2022/sponsor_dashboards/1/sponsor_profiles/new'
             expect(response).to(be_successful)
             expect(response).to(have_http_status('200'))
             expect(response.body).to(include('スポンサー担当者情報フォーム(スポンサー1株式会社)'))

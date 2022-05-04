@@ -2,21 +2,21 @@
 #
 # Table name: chat_messages
 #
-#  id             :bigint           not null, primary key
+#  id             :integer          not null, primary key
+#  conference_id  :integer          not null
+#  profile_id     :integer
+#  speaker_id     :integer
 #  body           :string(255)
-#  children_count :integer          default(0), not null
-#  depth          :integer          default(0), not null
+#  parent_id      :integer
 #  lft            :integer          not null
-#  message_type   :integer
 #  rgt            :integer          not null
-#  room_type      :string(255)
+#  depth          :integer          default("0"), not null
+#  children_count :integer          default("0"), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  conference_id  :bigint           not null
-#  parent_id      :integer
-#  profile_id     :bigint
-#  room_id        :bigint
-#  speaker_id     :bigint
+#  room_type      :string(255)
+#  room_id        :integer
+#  message_type   :integer
 #
 # Indexes
 #
@@ -27,25 +27,20 @@
 #  index_chat_messages_on_rgt            (rgt)
 #  index_chat_messages_on_speaker_id     (speaker_id)
 #
-# Foreign Keys
-#
-#  fk_rails_...  (conference_id => conferences.id)
-#  fk_rails_...  (profile_id => profiles.id)
-#  fk_rails_...  (speaker_id => speakers.id)
-#
+
 require 'rails_helper'
 
 RSpec.describe(ChatMessage, type: :model) do
   describe 'get message count' do
     context 'with opened conference' do
       before do
-        create(:talk1, conference: cndt2020)
+        create(:talk1, conference: codt2022)
         create_list(:messages, 10, :alice, :roomid1, profile: alice)
         create_list(:messages, 12, :bob, :roomid2, profile: bob)
       end
-      let!(:cndt2020) { create(:cndt2020, :opened) }
-      let!(:alice) { create(:alice, :on_cndt2020, conference: cndt2020) }
-      let!(:bob) { create(:bob, :on_cndt2020, conference: cndt2020) }
+      let!(:codt2022) { create(:codt2022, :opened) }
+      let!(:alice) { create(:alice, :on_codt2022, conference: codt2022) }
+      let!(:bob) { create(:bob, :on_codt2022, conference: codt2022) }
 
       context 'should return correct count' do
         it { expect(ChatMessage.counts.find_by(room_id: 1, conference_id: 1).count).to(eq(10)) }
@@ -53,7 +48,7 @@ RSpec.describe(ChatMessage, type: :model) do
       end
     end
     context 'with archived conference' do
-      let!(:cndt2020) { create(:cndt2020, :archived) }
+      let!(:codt2022) { create(:codt2022, :archived) }
 
       context 'should not return message count' do
         it { expect(ChatMessage.counts.find_by(room_id: 1, conference_id: 1)).to(be(nil)) }

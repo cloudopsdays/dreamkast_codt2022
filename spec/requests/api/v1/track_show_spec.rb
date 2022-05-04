@@ -3,7 +3,7 @@ require 'rails_helper'
 describe TalksController, type: :request do
   describe 'GET /api/v1/tracks/{trackId}' do
     before do
-      create(:cndt2020)
+      create(:codt2022)
       create(:talk1)
       create(:talk2)
     end

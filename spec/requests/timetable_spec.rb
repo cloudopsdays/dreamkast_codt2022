@@ -12,7 +12,7 @@ describe TimetableController, type: :request do
       create(:talk_difficulties1)
     end
 
-    let!(:conference) { create(:cndt2020) }
+    let!(:conference) { create(:codt2022) }
     let!(:talk1) { create(:talk1) }
     let!(:talk2) { create(:talk2) }
     let!(:talk_rejekt) { create(:talk_rejekt) }
@@ -21,7 +21,7 @@ describe TimetableController, type: :request do
     describe 'not logged in' do
       context "get exists event's timetables" do
         it 'returns a success response without form' do
-          get '/cndt2020/timetables'
+          get '/codt2022/timetables'
           expect(response).to(be_successful)
           expect(response).to(have_http_status('200'))
           expect(response.body).to_not(include('<form action="profiles/talks"'))
@@ -46,23 +46,23 @@ describe TimetableController, type: :request do
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return({ info: { email: 'alice@example.com' } }))
       end
 
-      it 'redirect to /cndt2020/registration' do
-        get '/cndt2020/timetables'
+      it 'redirect to /codt2022/registration' do
+        get '/codt2022/timetables'
         expect(response).to_not(be_successful)
         expect(response).to(have_http_status('302'))
-        expect(response).to(redirect_to('/cndt2020/registration'))
+        expect(response).to(redirect_to('/codt2022/registration'))
       end
     end
 
     describe 'logged in' do
       before do
-        create(:alice, :on_cndt2020)
+        create(:alice, :on_codt2022)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(alice_session[:userinfo]))
       end
 
       context "get exists event's timetables" do
         it 'returns a success response with form' do
-          get '/cndt2020/timetables'
+          get '/codt2022/timetables'
           expect(response).to(be_successful)
           expect(response).to(have_http_status('200'))
           expect(response.body).to(include('<form action="profiles/talks"'))
@@ -85,7 +85,7 @@ describe TimetableController, type: :request do
 
   describe 'GET cndo#index' do
     before do
-      create(:cndo2021)
+      create(:o11y2022)
       create(:cndo_talk_category1)
       create(:cndo_talk_difficulties1)
     end
@@ -96,7 +96,7 @@ describe TimetableController, type: :request do
     describe 'not logged in' do
       context "get exists event's timetables" do
         it 'returns a success response without form' do
-          get '/cndo2021/timetables'
+          get '/o11y2022/timetables'
           expect(response).to(be_successful)
           expect(response).to(have_http_status('200'))
           expect(response.body).to_not(include('<form action="profiles/talks"'))
@@ -111,23 +111,23 @@ describe TimetableController, type: :request do
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return({ info: { email: 'alice@example.com' } }))
       end
 
-      it 'redirect to /cndo2021/registration' do
-        get '/cndo2021/timetables'
+      it 'redirect to /o11y2022/registration' do
+        get '/o11y2022/timetables'
         expect(response).to_not(be_successful)
         expect(response).to(have_http_status('302'))
-        expect(response).to(redirect_to('/cndo2021/registration'))
+        expect(response).to(redirect_to('/o11y2022/registration'))
       end
     end
 
     describe 'logged in' do
       before do
-        create(:bob, :on_cndo2021)
+        create(:bob, :on_o11y2022)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(bob_session[:userinfo]))
       end
 
       context "get exists event's timetables" do
         it 'returns a success response with form' do
-          get '/cndo2021/timetables'
+          get '/o11y2022/timetables'
           expect(response).to(be_successful)
           expect(response).to(have_http_status('200'))
           expect(response.body).to(include('<form action="profiles/talks"'))

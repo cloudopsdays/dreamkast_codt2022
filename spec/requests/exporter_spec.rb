@@ -3,8 +3,8 @@ require 'rails_helper'
 describe DreamkastExporter, type: :request do
   context 'GET /metrics' do
     before do
-      create(:talk1, conference: cndt2020)
-      create(:talk3, conference: cndt2020)
+      create(:talk1, conference: codt2022)
+      create(:talk3, conference: codt2022)
       create_list(:messages, 10, :alice, :roomid1, profile: alice)
       create_list(:messages, 12, :bob, :roomid2, profile: bob)
       create_list(:viewer_count, 3, :talk1)
@@ -16,9 +16,9 @@ describe DreamkastExporter, type: :request do
       FactoryBot.rewind_sequences
     end
 
-    let!(:cndt2020) { create(:cndt2020, :opened) }
-    let!(:alice) { create(:alice, :on_cndt2020, conference: cndt2020) }
-    let!(:bob) { create(:bob, :on_cndt2020, conference: cndt2020) }
+    let!(:codt2022) { create(:codt2022, :opened) }
+    let!(:alice) { create(:alice, :on_codt2022, conference: codt2022) }
+    let!(:bob) { create(:bob, :on_codt2022, conference: codt2022) }
 
     it 'returns a success response with event top page' do
       get '/metrics'
@@ -29,9 +29,9 @@ describe DreamkastExporter, type: :request do
     end
 
     context 'have multiple profiles in each conference' do
-      let!(:cndo2021) { create(:cndo2021, :registered) }
-      let!(:alice) { create(:alice, :on_cndo2021, conference: cndo2021) }
-      let!(:bob) { create(:bob, :on_cndt2020, conference: cndt2020) }
+      let!(:o11y2022) { create(:o11y2022, :registered) }
+      let!(:alice) { create(:alice, :on_o11y2022, conference: o11y2022) }
+      let!(:bob) { create(:bob, :on_codt2022, conference: codt2022) }
       it 'returns a number of regisrants each conferences' do
         get '/metrics'
         expect(response.body).to(include('dreamkast_registrants_count{conference_id="1"} 1.0'))

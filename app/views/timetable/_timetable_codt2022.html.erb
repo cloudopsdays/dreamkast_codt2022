@@ -1,0 +1,43 @@
+<% @conference.conference_days.each do |conference_day| %>
+  <% tracks = @conference.tracks.map {|track| track.name } %>
+  <% unless conference_day.internal  %>
+  <section class="timetable">
+    <div class="grid">
+      <div class="track codt"><%= image_tag "#{@conference.abbr}/header_logo.png" %></div>
+      <div class="track cntom" track_number=5><%= image_tag "#{@conference.abbr}/cntom2021.png" %></div>
+      <div class="track" track_number=1>大規模システム運用</div>
+      <div class="track" track_number=2>運用苦労話（しくじり、トラシュー）</div>
+      <div class="track" track_number=3>運用自動化（Dev/Ops、CI/CD）</div>
+      <div class="track" track_number=4>社内基盤（情シス、開発環境）</div>
+
+      <% counter = {} %>
+      <% conference_day.talks.where(show_on_timetable: true).order(:order).each do |talk| %>
+        <% next if talk.track == nil%>
+        <% counter[talk.track.number] = counter[talk.track.number].to_i + 1 %>
+        <div class="talk" slot="<%= talk.slot_number %>" style="--track: <%= talk.track.number %>;">
+          <% if form %>
+          <label for="<%= "talks[#{talk.id}]" %>" class="checkbox-label">
+          <%= form.check_box "talks[#{talk.id}]", { talk_id: talk.id, checked: talks_checked?(talk.id)}, true, false %>
+          <% end %>
+
+          <div class="content <%= 'checked' if @current_user && talks_checked?(talk.id) %>" talk_id="<%= talk.id %>" track_number="<%= talk.track.number %>">
+            <h5><%= link_to talk.title, talk_path(id: talk.id), remote: true %> </h5>
+            <h6>
+              <%= talk.speakers.map{|speaker| speaker.name }.join("/") %></span>
+            </h6>
+            <%= render 'timetable/talk_category_difficulty', talk: talk %>
+            <div class="content_caption"><br/><span>(タイトルクリックで詳細表示)</span></div>
+          </div>
+
+          <% if form %>
+          </label>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <% end %>
+<% end %>
+<% if form %>
+  <%= render 'timetable_footer', form: form, information: '視聴したいセッションを選択してください。同一時間帯に1セッションのみ選択可能ですが、選択していないセッションのアーカイブ視聴も可能です(一部除く)。' %>
+<% end %>

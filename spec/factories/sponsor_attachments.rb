@@ -32,6 +32,6 @@ FactoryBot.define do
   factory :sponsor_attachment_logo, class: SponsorAttachmentLogoImage do
     sponsor_id { 1 }
     type { 'SponsorAttachmentLogoImage' }
-    url { 'cndo2021/trademark.png' }
+    url { 'o11y2022/trademark.png' }
   end
 end
