@@ -29,3 +29,17 @@ ConferenceDay.seed(
   {id: 1, date: "2022-07-25", start_time: "13:00", end_time: "19:00", conference_id: 1, internal: false},
   {id: 2, date: "2022-05-31", start_time: "19:00", end_time: "21:00", conference_id: 1, internal: true} #Pre event
 )
+
+Track.seed(
+  { id: 1, number: 1, name: "Main", conference_id: 1}
+)
+
+TalkCategory.seed(
+  { id: 1,  conference_id: 1, name: "大規模システム運用"},
+  { id: 2,  conference_id: 1, name: "運用苦労話（しくじり、トラシュー）"},
+  { id: 3,  conference_id: 1, name: "運用自動化（Dev/Ops、CI/CD）"},
+  { id: 4,  conference_id: 1, name: "社内基盤（情シス、開発環境）"},
+  { id: 5,  conference_id: 1, name: "サービス・アプリケーション運用"},
+  { id: 6,  conference_id: 1, name: "製品・技術トレンド"},
+  { id: 7,  conference_id: 1, name: "Cloud CoE"},
+)
