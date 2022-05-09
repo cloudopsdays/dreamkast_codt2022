@@ -32,7 +32,7 @@ require 'rails_helper'
 
 RSpec.describe(Talk, type: :model) do
   before do
-    create(:cndt2020)
+    create(:codt2022)
     create(:proposal_item_configs_expected_participant)
     create(:proposal_item_configs_execution_phase)
 
