@@ -31,10 +31,6 @@ ConferenceDay.seed(
 )
 
 Track.seed(
-  { id: 1, number: 1, name: "Main", conference_id: 1}
-)
-
-TalkCategory.seed(
   { id: 1,  conference_id: 1, name: "大規模システム運用"},
   { id: 2,  conference_id: 1, name: "運用苦労話（しくじり、トラシュー）"},
   { id: 3,  conference_id: 1, name: "運用自動化（Dev/Ops、CI/CD）"},
@@ -42,4 +38,4 @@ TalkCategory.seed(
   { id: 5,  conference_id: 1, name: "サービス・アプリケーション運用"},
   { id: 6,  conference_id: 1, name: "製品・技術トレンド"},
   { id: 7,  conference_id: 1, name: "Cloud CoE"},
-  )
+)
