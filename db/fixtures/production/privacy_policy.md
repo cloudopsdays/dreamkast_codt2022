@@ -43,9 +43,8 @@ Cloud Operator Days Tokyo 2022 (以下、本イベント）の参加登録者は
 ・採用活動に関する情報のお知らせ
 ・その他お客様にとって役立つと判断された情報
 
-なおRed Hatは、Red Hatの製品、サービス、およびイベントに関するお知らせを送信するためにお客様の個人情報を使用する場合があります。
-マーケティングEメールの配信停止をご希望の場合は、各Eメール内の登録解除用リンクをクリックしていただくか、またEメール配信設定の[管理ページ](https://engage.redhat.com/Global-Preference-Center#unsubscribe_here)からEメール受信の同意をいつでも取り消すことができます。  
-詳細は[プライバシー・ステートメント](https://www.redhat.com/ja/privacy-statement)をご参照ください。
+インテル株式会社による個人情報の取り扱いについては、以下URLをご参照ください。
+https://www.intel.co.jp/content/www/jp/ja/privacy/intel-privacy-notice.html
 
 （8）協賛企業による情報提供の手段
 ・電子メール
