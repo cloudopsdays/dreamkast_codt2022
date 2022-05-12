@@ -34,8 +34,9 @@ class ProfilesController < ApplicationController
       Agreement.create!(profile_id: @profile.id, form_item_id: 3, value: 1) if agreement_params['require_posting']
       Agreement.create!(profile_id: @profile.id, form_item_id: 4, value: 1) if agreement_params['agree_ms']
       Agreement.create!(profile_id: @profile.id, form_item_id: 5, value: 1) if agreement_params['agree_ms_cndo2021']
-      ProfileMailer.registered(@profile, @conference).deliver_later
-      redirect_to("/#{event_name}/timetables")
+      # ProfileMailer.registered(@profile, @conference).deliver_later  # FIXME: Temporary disabled. Need to fix fifo-worker and SES settings.
+      redirect_to("/#{event_name}/dashboard")
+      # redirect_to("/#{event_name}/timetables") # TODO: Need to uncomment after pre-event
     else
       respond_to do |format|
         format.html { render(:new) }
