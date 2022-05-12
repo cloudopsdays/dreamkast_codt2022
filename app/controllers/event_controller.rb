@@ -13,7 +13,7 @@ class EventController < ApplicationController
     if !@conference.speaker_entry_enabled? and logged_in? and (@conference.registered? || @conference.opened?)
       redirect_to("/#{@conference.abbr}/dashboard")
     else
-      redirect_to "https://cloudopsdays.com/"
+      redirect_to('https://cloudopsdays.com/')
     end
   end
 
