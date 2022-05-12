@@ -12,11 +12,8 @@ describe EventController, type: :request do
     context 'not logged in' do
       it 'returns a success response with event top page' do
         get '/codt2022'
-        expect(response).to(be_successful)
-        expect(response).to(have_http_status('200'))
-        expect(response.body).to(include('Cloud Operator Days Tokyo 2022'))
-        expect(response.body).to(include('スピーカーとしてエントリー'))
-        expect(response.body).to(include('Cloud Operator Days Tokyo 2022'))
+        expect(response).to(have_http_status('302'))
+        expect(response).to(redirect_to('https://cloudopsdays.com/'))
       end
 
       it 'returns a success response with privacy policy' do
@@ -42,9 +39,8 @@ describe EventController, type: :request do
 
         it 'returns a success response with event top page' do
           get '/codt2022'
-          expect(response).to(be_successful)
-          expect(response).to(have_http_status('200'))
-          expect(response.body).to(include('data-method="get" href="/codt2022/speakers/guidance"'))
+          expect(response).to(have_http_status('302'))
+          expect(response).to(redirect_to('https://cloudopsdays.com/'))
         end
       end
 
@@ -56,9 +52,8 @@ describe EventController, type: :request do
 
         it 'returns a success response with event top page' do
           get '/codt2022'
-          expect(response).to(be_successful)
-          expect(response).to(have_http_status('200'))
-          expect(response.body).to(include('data-method="get" href="/codt2022/speaker_dashboard"'))
+          expect(response).to(have_http_status('302'))
+          expect(response).to(redirect_to('https://cloudopsdays.com/'))
         end
       end
     end

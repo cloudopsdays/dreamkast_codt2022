@@ -3,7 +3,7 @@ module LogoutHelper
     domain = ENV['AUTH0_DOMAIN']
     client_id = ENV['AUTH0_CLIENT_ID']
     request_params = {
-      returnTo: root_url,
+      returnTo: "https://cloudopsdays.com/",
       client_id: client_id
     }
 
