@@ -13,9 +13,7 @@ class EventController < ApplicationController
     if !@conference.speaker_entry_enabled? and logged_in? and (@conference.registered? || @conference.opened?)
       redirect_to("/#{@conference.abbr}/dashboard")
     else
-      @talks = @conference.talks.accepted.includes(:talks_speakers, :speakers)
-
-      render(event_view)
+      redirect_to('https://cloudopsdays.com/')
     end
   end
 

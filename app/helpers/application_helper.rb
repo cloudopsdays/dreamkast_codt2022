@@ -26,7 +26,7 @@ module ApplicationHelper
     if event_name && Conference.find_by(abbr: event_name).present?
       Conference.find_by(abbr: event_name).name
     else
-      'CloudNative Days'
+      'Cloud Operator Days Tokyo'
     end
   end
 
@@ -39,7 +39,7 @@ module ApplicationHelper
         page_title + ' | ' + base_title
       end
     else
-      'CloudNative Days'
+      'Cloud Operator Days Tokyo'
     end
   end
 
