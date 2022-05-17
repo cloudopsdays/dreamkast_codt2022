@@ -79,7 +79,7 @@ jobs:
           app_target_dir: manifests/app/dreamkast/overlays/production/main
           argo_template_file: ""
           argo_target_file: manifests/app/argocd-apps/production/dreamkast-main.yaml
-          image: ${{ steps.login-ecr.outputs.registry }}/dreamkast-ecs:${{ github.sha }}
+          image: public.ecr.aws/q5p7z1m4/dreamkast-ecs:${{ github.sha }}
           namespace: dreamkast
           replacements: BRANCH=main,ENVIRONMENT=production
 
