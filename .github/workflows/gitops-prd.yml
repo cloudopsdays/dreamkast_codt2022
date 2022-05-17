@@ -50,6 +50,7 @@ jobs:
           images: public.ecr.aws/q5p7z1m4/dreamkast-ecs
           tags: |
             type=sha,prefix=,format=long
+            type=semver,pattern={{raw}}
 
       - name: Build
         id: docker_build
