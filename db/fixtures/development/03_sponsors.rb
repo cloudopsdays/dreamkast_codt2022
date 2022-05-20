@@ -153,6 +153,13 @@ Sponsor.seed(
     conference_id: 1,
     url: ""
   },
+  {
+    id: 23,
+    name: "Sysdig Japan合同会社",
+    abbr: "sysdig",
+    conference_id: 1,
+    url: ""
+  },
 )
 
 SponsorType.seed(
@@ -206,6 +213,7 @@ SponsorType.seed(
   [20, 'Silver', 'denso', 1],
   [21, 'Silver', 'fujitsu', 1],
   [22, 'Tool', 'plaid', 1],
+  [23, 'Gold', 'sysdig', 1],
 ].each do |sponsors_sponsor_type|
   id = sponsors_sponsor_type[0]
   sponsor_type = SponsorType.find_by(name: sponsors_sponsor_type[1], conference_id: sponsors_sponsor_type[3])
@@ -242,6 +250,7 @@ end
   [20, 'denso', 'sponsors/codt2022/denso.png', 1],
   [21, 'fujitsu', 'sponsors/codt2022/fujitsu.png', 1],
   [22, 'plaid', 'sponsors/codt2022/plaid.png', 1],
+  [23, 'sysdig', 'sponsors/codt2022/sysdig.png', 1],
 ].each do |logo|
   SponsorAttachment.seed(
     { id: logo[0],
