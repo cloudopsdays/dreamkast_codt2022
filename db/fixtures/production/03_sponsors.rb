@@ -188,6 +188,11 @@ SponsorType.seed(
     name: "Tool",
     order: 5,
   },
+  { id: 6,
+    conference_id: 1,
+    name: "Booth",
+    order: 6,
+  },
 )
 
 [
@@ -214,6 +219,29 @@ SponsorType.seed(
   [21, 'Silver', 'fujitsu', 1],
   [22, 'Tool', 'plaid', 1],
   [23, 'Gold', 'sysdig', 1],
+  [24, 'Booth', 'newrelic', 1],
+  [25, 'Booth', 'f5', 1],
+  [26, 'Booth', 'fixpoint', 1],
+  [27, 'Booth', 'intel', 1],
+  [28, 'Booth', 'vmware', 1],
+  [29, 'Booth', 'pagerduty', 1],
+  [30, 'Booth', 'microsoft', 1],
+  [31, 'Booth', 'opsramp', 1],
+  [32, 'Booth', 'nttdata', 1],
+  [33, 'Booth', 'hpe', 1],
+  [34, 'Booth', 'casareal', 1],
+  [35, 'Booth', 'line', 1],
+  [36, 'Booth', 'canonical', 1],
+  [37, 'Booth', 'axlbit', 1],
+  [38, 'Booth', 'openinfra', 1],
+  [39, 'Booth', 'yahoo', 1],
+  [40, 'Booth', 'heartbeats', 1],
+  [41, 'Booth', 'juniper', 1],
+  [42, 'Booth', 'ntte', 1],
+  [43, 'Booth', 'denso', 1],
+  [44, 'Booth', 'fujitsu', 1],
+  [45, 'Booth', 'plaid', 1],
+  [46, 'Booth', 'sysdig', 1],
 ].each do |sponsors_sponsor_type|
   id = sponsors_sponsor_type[0]
   sponsor_type = SponsorType.find_by(name: sponsors_sponsor_type[1], conference_id: sponsors_sponsor_type[3])
