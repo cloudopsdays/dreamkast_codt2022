@@ -160,6 +160,13 @@ Sponsor.seed(
     conference_id: 1,
     url: ""
   },
+  {
+    id: 24,
+    name: "Datadog Inc.",
+    abbr: "datadog",
+    conference_id: 1,
+    url: ""
+  },
 )
 
 SponsorType.seed(
@@ -242,6 +249,8 @@ SponsorType.seed(
   [44, 'Booth', 'fujitsu', 1],
   [45, 'Booth', 'plaid', 1],
   [46, 'Booth', 'sysdig', 1],
+  [47, 'Gold', 'datadog', 1],
+  [48, 'Booth', 'datadog', 1],
 ].each do |sponsors_sponsor_type|
   id = sponsors_sponsor_type[0]
   sponsor_type = SponsorType.find_by(name: sponsors_sponsor_type[1], conference_id: sponsors_sponsor_type[3])
@@ -279,6 +288,7 @@ end
   [21, 'fujitsu', 'sponsors/codt2022/fujitsu.png', 1],
   [22, 'plaid', 'sponsors/codt2022/plaid.png', 1],
   [23, 'sysdig', 'sponsors/codt2022/sysdig.png', 1],
+  [24, 'datadog', 'sponsors/codt2022/datadog.png', 1],
 ].each do |logo|
   SponsorAttachment.seed(
     { id: logo[0],
