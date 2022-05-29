@@ -68,6 +68,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       speaker_entry { 0 }
     end
 
+    trait :video_enabled do
+      status { 4 }
+      speaker_entry { 0 }
+    end
+
     trait :speaker_entry_enabled do
       speaker_entry { 1 }
     end

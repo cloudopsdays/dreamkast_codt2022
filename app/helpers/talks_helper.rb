@@ -14,6 +14,11 @@ module TalksHelper
       else
         video.on_air = false
       end
+      if value[:video_id].empty?
+        talk.video_published = false
+      else
+        talk.video_published = true
+      end
       video.save
     end
     ActionCable.server.broadcast(

@@ -31,11 +31,11 @@ ConferenceDay.seed(
 )
 
 Track.seed(
-  { id: 1,  conference_id: 1, name: "大規模システム運用"},
-  { id: 2,  conference_id: 1, name: "運用苦労話（しくじり、トラシュー）"},
-  { id: 3,  conference_id: 1, name: "運用自動化（Dev/Ops、CI/CD）"},
-  { id: 4,  conference_id: 1, name: "社内基盤（情シス、開発環境）"},
-  { id: 5,  conference_id: 1, name: "サービス・アプリケーション運用"},
-  { id: 6,  conference_id: 1, name: "製品・技術トレンド"},
-  { id: 7,  conference_id: 1, name: "Cloud CoE"},
+  { id: 1,  conference_id: 1, number: 1, name: "大規模システム運用"},
+  { id: 2,  conference_id: 1, number: 2, name: "運用苦労話（しくじり、トラシュー）"},
+  { id: 3,  conference_id: 1, number: 3, name: "運用自動化（Dev/Ops、CI/CD）"},
+  { id: 4,  conference_id: 1, number: 4, name: "社内基盤（情シス、開発環境）"},
+  { id: 5,  conference_id: 1, number: 5, name: "サービス・アプリケーション運用"},
+  { id: 6,  conference_id: 1, number: 6, name: "製品・技術トレンド"},
+  { id: 7,  conference_id: 1, number: 7, name: "Cloud CoE"},
 )
