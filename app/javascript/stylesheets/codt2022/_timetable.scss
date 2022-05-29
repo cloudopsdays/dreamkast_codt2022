@@ -7,7 +7,7 @@ section.timetable {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: minmax(30px, auto);
     grid-gap: 5px;
     grid-auto-flow: column;
@@ -16,6 +16,7 @@ section.timetable {
     // /* スクロールを滑らかにする */
     -webkit-overflow-scrolling: touch;
     // /* スクロールを滑らかにする */
+    margin-top: 20px;
 }
 
 .grid h2 {
@@ -49,18 +50,6 @@ section.timetable {
     width: 100px;
 }
 
-.cntom {
-    grid-column: 5 / 6;
-    grid-row: 1 / 3;
-}
-
-.cntom img {
-    filter: hue-rotate(-72deg);
-    margin: auto auto;
-    padding: 0px 10px;
-    width: 100%;
-}
-
 .track[track_number="1"] {
     grid-column: 1;
 }
@@ -77,32 +66,46 @@ section.timetable {
     grid-column: 4;
 }
 
+.track[track_number="5"] {
+    grid-column: 5;
+}
+
+.track[track_number="6"] {
+    grid-column: 6;
+}
+
+.track[track_number="7"] {
+    grid-column: 7;
+}
+
 [track_number="1"] {
     filter: hue-rotate(0deg);
 }
 
 [track_number="2"] {
-    filter: hue-rotate(288deg);
+    filter: hue-rotate(40deg);
 }
 
 [track_number="3"] {
-    filter: hue-rotate(216deg);
+    filter: hue-rotate(80deg);
 }
 
 [track_number="4"] {
-    filter: hue-rotate(144deg);
+    filter: hue-rotate(120deg);
 }
 
 [track_number="5"] {
-    filter: hue-rotate(72deg);
+    filter: hue-rotate(160deg);
 }
 
-// .track {
-//     grid-column: calc(var(--track) + 1);
-//     display: flex;
-//     justify-content: center;
-//     background-color: rgba(256, 256, 256, 0.9);
-// }
+[track_number="6"] {
+    filter: hue-rotate(200deg);
+}
+
+[track_number="7"] {
+    filter: hue-rotate(240deg);
+}
+
 .timetable .talk {
     grid-column: var(--track);
 }
@@ -391,6 +394,12 @@ input[type="checkbox"]:checked+.content .content_caption:before {
     }
     .content[track_number="5"] {
         filter: hue-rotate(160deg);
+    }
+    .content[track_number="6"] {
+        filter: hue-rotate(200deg);
+    }
+    .content[track_number="7"] {
+        filter: hue-rotate(240deg);
     }
     .content.first {
         margin-top: 20px;
