@@ -52,9 +52,7 @@ class Admin::TalksController < ApplicationController
     )
 
     flash[:notice] = "OnAirに切り替えました: #{talk.start_to_end} #{talk.speaker_names.join(',')} #{talk.title}"
-    respond_to do |format|
-      format.js { render('admin/tracks/index.js') }
-    end
+    redirect_to admin_tracks_path
   end
 
   def stop_on_air
@@ -79,9 +77,7 @@ class Admin::TalksController < ApplicationController
     )
 
     flash[:notice] = "Waiting に切り替えました: #{talk.start_to_end} #{talk.speaker_names.join(',')} #{talk.title}"
-    respond_to do |format|
-      format.js { render('admin/tracks/index.js') }
-    end
+    redirect_to admin_tracks_path
   end
 
   def start_recording
