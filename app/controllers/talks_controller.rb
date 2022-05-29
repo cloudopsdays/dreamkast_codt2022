@@ -54,7 +54,7 @@ class TalksController < ApplicationController
   end
 
   def display_video?(talk)
-    if (talk.conference.closed? && logged_in?) || (talk.conference.opened? && logged_in?) || talk.conference.archived?
+    if (talk.conference.closed? && logged_in?) || (talk.conference.opened? && logged_in?) || (talk.conference.video_enabled? && logged_in?) || talk.conference.archived?
       if talk.proposal_items.find_by(label: VideoAndSlidePublished::LABEL).present?
         if talk.proposal_items.empty?
           false

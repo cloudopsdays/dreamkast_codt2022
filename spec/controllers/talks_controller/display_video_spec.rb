@@ -175,6 +175,20 @@ RSpec.describe(TalksController, type: :controller) do
         it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_video, true
         it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ng, false
       end
+
+      context 'conference is video_enabled' do
+        let!(:conference) { create(:codt2022, :video_enabled) }
+
+        it_should_behave_like :video_is_published_and_present_and_archived, true
+        it_should_behave_like :video_is_not_published, false
+        it_should_behave_like :video_is_not_present, false
+        it_should_behave_like :video_is_not_archived, false
+
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ok, true
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_slide, false
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_video, true
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ng, false
+      end
     end
 
     context "user doesn't logged in" do
@@ -235,6 +249,20 @@ RSpec.describe(TalksController, type: :controller) do
         it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ok, true
         it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_slide, false
         it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_video, true
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ng, false
+      end
+
+      context 'conference is video_enabled' do
+        let!(:conference) { create(:codt2022, :video_enabled) }
+
+        it_should_behave_like :video_is_published_and_present_and_archived, false
+        it_should_behave_like :video_is_not_published, false
+        it_should_behave_like :video_is_not_present, false
+        it_should_behave_like :video_is_not_archived, false
+
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ok, false
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_slide, false
+        it_should_behave_like :proposal_item_whether_it_can_be_published_is_only_video, false
         it_should_behave_like :proposal_item_whether_it_can_be_published_is_all_ng, false
       end
     end

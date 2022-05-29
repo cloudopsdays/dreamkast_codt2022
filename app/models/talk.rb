@@ -283,9 +283,7 @@ class Talk < ApplicationRecord
   end
 
   def archived?
-    now = Time.now.in_time_zone('Tokyo')
-    etime = DateTime.parse("#{conference_day.date.strftime('%Y-%m-%d')} #{end_time.strftime('%H:%M')} +0900")
-    (now.to_i - etime.to_i) >= 600
+    true
   end
 
   def sponsor_session?
