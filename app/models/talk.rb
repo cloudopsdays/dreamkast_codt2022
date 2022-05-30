@@ -179,7 +179,7 @@ class Talk < ApplicationRecord
       'video_published',
       'document_url',
       'additional_documents',
-      'order',
+      'order'
     ]
   end
 
