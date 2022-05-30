@@ -178,7 +178,8 @@ class Talk < ApplicationRecord
       'show_on_timetable',
       'video_published',
       'document_url',
-      'additional_documents'
+      'additional_documents',
+      'order',
     ]
   end
 
