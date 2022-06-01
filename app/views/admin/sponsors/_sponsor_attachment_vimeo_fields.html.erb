@@ -1,0 +1,20 @@
+<div class="vimeo-field">
+  <div class="form-row form-group">
+    <div class="col-12 col-mb-6">
+      <% vimeo = f.object %>
+
+      <%= f.label :url, "Vimeo embed url" %>
+      <%= f.text_field :url, class: "form-control", id: "attachmentTextInputForm", rows: "3" %>
+
+      <% if vimeo.present? %>
+        <div class="movie-wrap">
+          <p>Preview</p>
+          <iframe src="<%= vimeo.url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      <% end %>
+
+      <%= f.hidden_field :_destroy %>
+      <%= link_to 'Delete', '#', class: 'remove_vimeo_field' %>
+    </div>
+  </div>
+</div>
