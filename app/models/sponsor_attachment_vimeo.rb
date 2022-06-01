@@ -20,7 +20,6 @@
 #
 
 class SponsorAttachmentVimeo < SponsorAttachment
-
   MAX_POSTS_COUNT = 2
 
   validate :posts_count_must_be_within_limit

@@ -28,7 +28,7 @@ class Booth < ApplicationRecord
   end
 
   def vimeo_urls
-    sponsor.sponsor_attachment_vimeos.present? ? sponsor.sponsor_attachment_vimeos.map { |vimeo| vimeo.url} : []
+    sponsor.sponsor_attachment_vimeos.present? ? sponsor.sponsor_attachment_vimeos.map { |vimeo| vimeo.url } : []
   end
 
   def miro_url
