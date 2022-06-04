@@ -44,3 +44,6 @@ Style/StringLiterals:
 # nextの使用は強制されたくない
 Style/Next:
   Enabled: false
+
+Metrics/ModuleLength:
+ Max: 110

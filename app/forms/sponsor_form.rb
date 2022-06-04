@@ -8,7 +8,7 @@ class SponsorForm
   attr_accessor :booth_published
   attr_accessor :sponsor_attachment_key_images
   attr_accessor :attachment_text
-  attr_accessor :attachment_vimeo
+  attr_accessor :sponsor_attachment_vimeos
   attr_accessor :attachment_zoom
   attr_accessor :attachment_miro
   attr_accessor :sponsor_attachment_pdfs
@@ -79,6 +79,39 @@ class SponsorForm
     end
   end
 
+  concerning :SponsorAttachmentVimeosBuilder do
+    attr_accessor :sponsor_attachment_vimeos
+
+    def sponsor_attachment_vimeos
+      @sponsor_attachment_vimeos ||= [SponsorAttachmentVimeo.new, SponsorAttachmentVimeo.new]
+    end
+
+    def sponsor_attachment_vimeos_attributes=(attributes)
+      @sponsor_attachment_vimeos ||= []
+      attributes.each do |_i, params|
+        if params.key?(:id)
+          if params[:_destroy] == '1'
+            vimeo = @sponsor.sponsor_attachment_vimeos.find(params[:id])
+            vimeo.destroy
+          else
+            params.delete(:_destroy)
+            vimeo = @sponsor.sponsor_attachment_vimeos.find(params[:id])
+            vimeo.update(params)
+          end
+        else
+          params.delete(:_destroy)
+          vimeo = SponsorAttachmentVimeo.new(params.merge(sponsor_id: sponsor.id))
+          vimeo.save!
+          @sponsor_attachment_vimeos.push(vimeo)
+        end
+      end
+    rescue => e
+      puts(e)
+      false
+    end
+  end
+
+
   def initialize(attributes = nil, sponsor: Sponsor.new)
     @sponsor = sponsor
     attributes ||= default_attributes
@@ -104,13 +137,6 @@ class SponsorForm
       else
         text = SponsorAttachmentText.new(text: attachment_text, sponsor_id: sponsor.id)
         text.save!
-      end
-
-      if sponsor.sponsor_attachment_vimeo.present?
-        sponsor.sponsor_attachment_vimeo.update!(url: attachment_vimeo)
-      else
-        vimeo = SponsorAttachmentVimeo.new(url: attachment_vimeo, sponsor_id: sponsor.id)
-        vimeo.save!
       end
 
       if sponsor.sponsor_attachment_zoom.present?
@@ -139,6 +165,7 @@ class SponsorForm
   def load
     @sponsor_attachment_key_images = @sponsor.sponsor_attachment_key_images
     @sponsor_attachment_pdfs = @sponsor.sponsor_attachment_pdfs
+    @sponsor_attachment_vimeos = @sponsor.sponsor_attachment_vimeos
   end
 
   private
@@ -151,11 +178,11 @@ class SponsorForm
       speaker_emails: sponsor.speaker_emails,
       booth_published: sponsor.booth.present? && sponsor.booth.published.present? ? sponsor.booth.published : nil,
       attachment_text: sponsor.sponsor_attachment_text.present? ? sponsor.sponsor_attachment_text.text : '',
-      attachment_vimeo: sponsor.sponsor_attachment_vimeo.present? ? sponsor.sponsor_attachment_vimeo.url : '',
       attachment_zoom: sponsor.sponsor_attachment_zoom.present? ? sponsor.sponsor_attachment_zoom.url : '',
       attachment_miro: sponsor.sponsor_attachment_miro.present? ? sponsor.sponsor_attachment_miro.url : '',
       sponsor_attachment_key_images: sponsor_attachment_key_images,
-      sponsor_attachment_pdfs: sponsor_attachment_pdfs
+      sponsor_attachment_pdfs: sponsor_attachment_pdfs,
+      sponsor_attachment_vimeos: sponsor.sponsor_attachment_vimeos
     }
   end
 end

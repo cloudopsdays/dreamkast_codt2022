@@ -52,8 +52,7 @@
 <% end %>
 
 
-<% if sponsor.sponsor_attachment_vimeo.present? %>
-  <% vimeo = sponsor.sponsor_attachment_vimeo %>
+<% sponsor.sponsor_attachment_vimeos.each do |vimeo| %>
   <div class="row mb-3">
     <div class="col-12 mb-3 text-center">
       <div class="movie-wrap">

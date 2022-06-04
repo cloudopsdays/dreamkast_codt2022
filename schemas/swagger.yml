@@ -639,8 +639,10 @@ components:
           type: string
         logoUrl:
           type: string
-        vimeoUrl:
-          type: string
+        vimeoUrls:
+          type: array
+          items:
+            type: string
         miroUrl:
           type: string
         pdfUrls:
