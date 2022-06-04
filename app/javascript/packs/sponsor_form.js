@@ -38,3 +38,24 @@ $(document).on('click', '.remove_key_image_field', function(event) {
     }
     return event.preventDefault();
 });
+
+$(document).on('click', '.add_vimeo_fields', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.vimeo-fields').append($(this).data('fields').replace(regexp, time));
+    if ($('div:visible.vimeo-field').length >= 2) {
+        $('.add-vimeo').hide()
+    }
+    return event.preventDefault();
+})
+
+$(document).on('click', '.remove_vimeo_field', function(event) {
+    console.log('remove_vimeo_field')
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('.vimeo-field').hide();
+    if ($('div:visible.vimeo-field').length < 2) {
+        $('.add-vimeo').show()
+    }
+    return event.preventDefault();
+});

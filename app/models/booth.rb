@@ -27,8 +27,8 @@ class Booth < ApplicationRecord
     sponsor.sponsor_attachment_logo_image ? sponsor.sponsor_attachment_logo_image.url : ''
   end
 
-  def vimeo_url
-    sponsor.sponsor_attachment_vimeo.present? ? sponsor.sponsor_attachment_vimeo.url : ''
+  def vimeo_urls
+    sponsor.sponsor_attachment_vimeos.present? ? sponsor.sponsor_attachment_vimeos.map { |vimeo| vimeo.url } : []
   end
 
   def miro_url
