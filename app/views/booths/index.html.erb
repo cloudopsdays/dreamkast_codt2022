@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="my-3 text-center">ブース</h1>
   <div class="row">
-    <% if @conference.opened? %>
+    <% if @conference.opened? || @conference.video_enabled? %>
       <% @booths.each do |booth| %>
         <div class="col-12 col-md-4 my-3 text-center">
           <% if booth.published && booth.sponsor.sponsor_attachment_logo_image.present? %>
