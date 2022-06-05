@@ -93,27 +93,8 @@ class SpeakerForm
     return if invalid?
 
     ActiveRecord::Base.transaction do
-      speaker.update!(name: name, name_mother_tongue: name_mother_tongue, profile: profile, company: company, job_title: job_title, twitter_id: twitter_id, github_id: github_id, avatar: avatar, conference_id: conference_id,
+      speaker.update!(name: name, profile: profile, company: company, job_title: job_title, twitter_id: twitter_id, github_id: github_id, avatar: avatar, conference_id: @conference.id,
                       sub: sub, email: email, additional_documents: additional_documents)
-      @destroy_talks.each do |talk|
-        proposal = talk.proposal
-        talk_speaker = TalksSpeaker.new(talk_id: talk.id, speaker_id: speaker.id)
-        talk.destroy!
-        talk_speaker.destroy!
-        proposal.destroy! if proposal
-      end
-      @talks.each do |talk|
-        if talk.persisted?
-          talk.save!(context: :entry_form)
-        else
-          talk.save!(context: :entry_form)
-          talk_speaker = TalksSpeaker.new(talk_id: talk.id, speaker_id: speaker.id)
-          talk_speaker.save!
-
-          proposal = Proposal.new(conference_id: conference_id, talk_id: talk.id)
-          proposal.save!
-        end
-      end
     end
   rescue => e
     puts("failed to save: #{e}")
