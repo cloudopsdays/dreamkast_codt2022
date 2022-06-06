@@ -8,12 +8,6 @@
     </div>
 
     <div class="field pb-3">
-      <%= form.label :name_mother_tongue, '講演者氏名（漢字）- Name "kanji"' %>*
-      <p class="field-description" style="font-size: 0.7em">If you do not have a Kanji name, please set "N/A"</p>
-      <%= form.text_field :name_mother_tongue, class: "form-control", required: true, placeholder: 'クラウド 太郎' %>
-    </div>
-
-    <div class="field pb-3">
       <%= form.label :profile, '講演者プロフィール - Biography' %>*
       <p class="field-description" style="font-size: 0.7em">200文字程度 (About 400 letters)</p>
       <%= form.text_area :profile, class: "form-control", required: true %>
@@ -64,25 +58,6 @@
     <img src="<%= (@speaker.avatar_url(:large) || @speaker.avatar_url) unless @speaker.nil? %>" height="300" class="rounded" \>
   </div>
 
-  </section>
-
-  <section class="speaker-information py-3">
-    <h3 class="py-3">セッション情報</h3>
-
-    <div class="talk-fields">
-      <%= form.fields_for :talks do |talk| %>
-        <%= render 'speaker_dashboard/speakers/talk_fields', :f => talk, :conference => @conference %>
-      <% end %>
-    </div>
-
-    <% if @conference.speaker_entry_enabled? || @sponsor || admin? %>
-      <% if action_name == "new" || form.object.talks.size < 3 %>
-        <p class="alert alert-info">追加ボタンを押すとセッションを最大3件まで登録できます。またエントリー後にダッシュボードから更新可能です。</p>
-        <p><%= link_to_add_talk_fields "セッションを追加する", form, :talks, class: 'add-talk btn btn-primary' %></p>
-      <% else %>
-        <p><%= link_to_add_talk_fields "セッションを追加する", form, :talks, class: 'add-talk btn btn-primary', style: "display: none" %></p>
-      <% end %>
-    <% end %>
   </section>
 
   <div class="actions justify-content-center py-3">

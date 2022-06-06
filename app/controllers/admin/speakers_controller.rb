@@ -17,7 +17,7 @@ class Admin::SpeakersController < ApplicationController
   def update
     @speaker = Speaker.find(params[:id])
 
-    @speaker_form = SpeakerForm.new(speaker_params, speaker: @speaker)
+    @speaker_form = SpeakerForm.new(speaker_params, speaker: @speaker, conference: @conference)
     @speaker_form.sub = @speaker.sub
     @speaker_form.email = @speaker.email
 
