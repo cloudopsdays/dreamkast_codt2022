@@ -21,7 +21,9 @@
           <%= render 'talks/partial_show/talk_video_block_videojs', talk: talk %>
         <% else %>
           <%= render 'talks/partial_show/talk_video_block', talk: talk %>
-          <% end %>
+        <% end %>
+      <% else %>
+        <%= render 'talks/partial_show/talk_video_block_dummy', talk: talk %>
       <% end %>
 
       <p><%= simple_format talk.abstract %></p>
@@ -41,11 +43,6 @@
         </div>
       <% end %>
 
-      <% if (conference.registered? || conference.opened?) && conference.attendee_entry_enabled? && !(logged_in? && @profile.present?) %>
-      <div class="col-12 text-center my-4">
-        <%= link_to "このイベントに参加申し込み <br/> (参加無料)".html_safe, registration_path, {method: :get, class: "btn btn-focus btn-xl inline" } %>
-      </div>
-      <% end %>
       <div class="col-12 text-center my-4">
         <%= button_to 'タイムテーブル', timetables_path, {method: :get, class: "btn btn-primary btn-xl inline" } %>
       </div>
