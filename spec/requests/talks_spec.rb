@@ -179,18 +179,6 @@ describe TalksController, type: :request do
               expect(response.body).to(include('player.vimeo.com'))
             end
           end
-
-          context 'talk is not archived' do
-            before do
-              allow_any_instance_of(Talk).to(receive(:archived?).and_return(false))
-            end
-
-            it 'includes vimeo iframe' do
-              get '/codt2022/talks/1'
-              expect(response).to(be_successful)
-              expect(response.body).not_to(include('player.vimeo.com'))
-            end
-          end
         end
       end
     end
@@ -270,18 +258,6 @@ describe TalksController, type: :request do
               expect(response.body).to(include('player.vimeo.com'))
             end
           end
-
-          context 'talk is not archived' do
-            before do
-              allow_any_instance_of(Talk).to(receive(:archived?).and_return(false))
-            end
-
-            it 'includes vimeo iframe' do
-              get '/codt2022/talks/1'
-              expect(response).to(be_successful)
-              expect(response.body).not_to(include('player.vimeo.com'))
-            end
-          end
         end
       end
     end
@@ -306,18 +282,6 @@ describe TalksController, type: :request do
             get '/codt2022/talks/1'
             expect(response).to(be_successful)
             expect(response.body).to(include('player.vimeo.com'))
-          end
-        end
-
-        context 'talk is not archived' do
-          before do
-            allow_any_instance_of(Talk).to(receive(:archived?).and_return(false))
-          end
-
-          it "doesn't includes vimeo iframe" do
-            get '/codt2022/talks/1'
-            expect(response).to(be_successful)
-            expect(response.body).to_not(include('player.vimeo.com'))
           end
         end
       end
@@ -359,18 +323,6 @@ describe TalksController, type: :request do
               get '/codt2022/talks/1'
               expect(response).to(be_successful)
               expect(response.body).to(include('player.vimeo.com'))
-            end
-          end
-
-          context 'talk is not archived' do
-            before do
-              allow_any_instance_of(Talk).to(receive(:archived?).and_return(false))
-            end
-
-            it 'includes vimeo iframe' do
-              get '/codt2022/talks/1'
-              expect(response).to(be_successful)
-              expect(response.body).not_to(include('player.vimeo.com'))
             end
           end
         end
