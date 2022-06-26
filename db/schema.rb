@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_02_111111) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_095905) do
   create_table "access_logs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.string "sub"
@@ -206,6 +206,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_02_111111) do
     t.string "company_address_prefecture_id"
     t.string "first_name_kana"
     t.string "last_name_kana"
+    t.boolean "physically_attend", default: false
   end
 
   create_table "proposal_item_configs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|

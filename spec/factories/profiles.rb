@@ -21,6 +21,7 @@
 #  company_address_prefecture_id :string(255)
 #  first_name_kana               :string(255)
 #  last_name_kana                :string(255)
+#  physically_attend             :boolean          default("0")
 #
 
 FactoryBot.define do
