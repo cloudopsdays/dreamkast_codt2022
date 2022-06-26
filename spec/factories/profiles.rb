@@ -25,6 +25,7 @@
 
 FactoryBot.define do
   factory :alice, class: Profile do
+    id { 1 }
     sub { 'alice' }
     email { 'alice@example.com' }
     last_name { 'alice' }

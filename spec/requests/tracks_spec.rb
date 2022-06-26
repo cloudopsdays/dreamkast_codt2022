@@ -6,10 +6,28 @@ RSpec.describe(TracksController, type: :request) do
   let(:roles) { [] }
 
   describe 'GET /:event/dashboard' do
-    describe 'logged in and registered' do
+    describe 'logged in and registered but doesnt register any talks' do
       before do
         create(:codt2022)
         create(:alice, :on_codt2022)
+        allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
+      end
+
+      context 'access to dashboard' do
+        it 'redirect to timetable' do
+          subject
+          expect(response).to_not(be_successful)
+          expect(response).to(redirect_to('/codt2022/timetables'))
+        end
+      end
+    end
+
+    describe 'logged in and registered and register 1 talks' do
+      before do
+        create(:codt2022)
+        create(:alice, :on_codt2022)
+        create(:talk1)
+        create(:alice_talk1)
         allow_any_instance_of(ActionDispatch::Request::Session).to(receive(:[]).and_return(session[:userinfo]))
       end
 
