@@ -41,10 +41,12 @@ FactoryBot.define do
     conference_id { 1 }
 
     trait :on_codt2022 do
+      id { 1 }
       conference_id { 1 }
     end
 
     trait :on_o11y2022 do
+      id { 2 }
       conference_id { 2 }
     end
   end
