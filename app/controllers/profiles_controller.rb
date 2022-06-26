@@ -114,7 +114,8 @@ class ProfilesController < ApplicationController
       :department,
       :position,
       :roles,
-      :conference_id
+      :conference_id,
+      :physically_attend
     )
   end
 

@@ -64,6 +64,12 @@
     <%= form.text_field :position, required: true, class: "form-control", placeholder: "一般 / 管理職 / CTO など" %>
   </div>
 
+  <div class="form-row form-group">
+    <%= form.label :physically_attend, "7月27日(水)のクロージングイベントに現地で参加しますか？" %>*
+    <%= form.select :physically_attend, [['いいえ(オンライン参加 or 参加しない)', false],['はい(現地参加)',true]] %>
+    <div class="mt-2">クロージングイベントの詳細は<a href="https://cloudopsdays.com/0727closing/" target="_blank" style="text-decoration: underline">こちら</a></div>
+  </div>
+
   <% if action_name == "new" %>
   <div class="privacy_policy">
     <%= markdown @conference.privacy_policy %>
