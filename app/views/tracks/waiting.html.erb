@@ -3,34 +3,6 @@
     <div id="main-pane" class="col-12">
       <div class="row">
         <div class="information col-12 col-md-9">
-          <h4>■ Cloud Operator Days Tokyo 2022 プレイベント ■</h4>
-          <h5>2022年5月31日（火）15:00-17:00 ライブ配信</h5>
-          <p>「運用者に光を!」メインテーマに掲げ2020年にスタートした本イベントは今年で3回目となりますが、多くの運用関係者から支持をいただき、情報・ノウハウの共有が促進されて、運用者の意識の変化や士気の向上なども感じられます。
-  </p>
-          <p>第1回からのさまざまな成果を踏まえて、改めて、第3回の開催主旨、約70セッションのオンデマンド配信とクロージングイベントの見どころなどについてご説明します。</p>
-          <p>当日は、岐阜大学客員教授であり、デンソーのデジタルイノベーション室を率いる成迫 剛志 氏による基調講演、ヤフー、NTT、サイバーエージェント各社の若いオペレータによるパネルディスカッションを、プログラムとして用意しております。</p>
-          <p>是非ご参加いただけますようお願いします。</p>
-          <h4>■ プレイベントプログラム ■</h4>
-          <h5>15:00-15:10 オープニング</h5>
-          <p>長谷川 章博 （CODT2022実行委会 委員長/AXLBIT株式会社）</p>
-          <h5>15:10-15:40　 基調講演　「運用こそが利益の源泉」</h5>
-          <p>成迫 剛志 （岐阜大学 客員教授 / Design for ALL Co-founder / 株式会社デンソー）</p>
-          <h5>15:45-16:30　 ヤングオペレーターパネル</h5>
-          <p>
-          モデレータ：<br/>
-          長谷川 章博 （CODT実行委員長/AXLBIT株式会社）<br/>
-          パネリスト：<br/>
-          高橋 陽太 （ヤフー株式会社）<br/>
-          坂齊 史奈子 （東日本電信電話株式会社）<br/>
-          源波 陸 （株式会社サイバーエージェント）</p>
-          <h5>16:35-17:00　 CODT2022　見どころのご紹介</h5>
-          <p>長谷川 章博 （CODT2022実行委会 委員長/AXLBIT株式会社）<br/>
-          水野 伸太郎 （日本OpenStackユーザ会 会長/日本電信電話株式会社）</p>
-          <h4>■ 視聴方法 ■</h4>
-          配信は本ページで行います。開始時刻になると自動的に切り替わりますのでそのままお待ちください。
-        </div>
-
-        <!-- div class="information col-12 col-md-9">
           <h4>運営からのお知らせ</h4>
           <ul>
             <% @announcements.order(publish_time: 'DESC').each do |announcement| %>
@@ -40,7 +12,7 @@
               </li>
             <% end %>
           </ul>
-        </div -->
+        </div>
 
         <div id="sub-pane" class="col-12 col-md-3">
           <div class="social">
@@ -50,7 +22,7 @@
       </div>
     </div>
     <div id="logo-pane" class="col-12">
-      <!--TODO: Uncomment this after pre-event div id="registered-talk" class="talk accordion mt-3">
+      <div id="registered-talk" class="talk accordion mt-3">
         <h4 class="">
           <% if @conference.opened? || @conference.video_enabled? %>
             聴講セッション(クリックで再生ページへ)
@@ -79,7 +51,7 @@
               <%= button_to '聴講予定セッションを変更する', timetables_path, {method: :get, class: "btn btn-primary btn-xl inline" } %>
           </div>
         </div>
-      </div -->
+      </div>
     </div>
   </div>
 

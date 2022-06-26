@@ -25,6 +25,7 @@
 
 FactoryBot.define do
   factory :alice, class: Profile do
+    id { 1 }
     sub { 'alice' }
     email { 'alice@example.com' }
     last_name { 'alice' }
@@ -40,10 +41,12 @@ FactoryBot.define do
     conference_id { 1 }
 
     trait :on_codt2022 do
+      id { 1 }
       conference_id { 1 }
     end
 
     trait :on_o11y2022 do
+      id { 2 }
       conference_id { 2 }
     end
   end

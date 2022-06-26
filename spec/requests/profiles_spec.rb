@@ -72,8 +72,7 @@ describe ProfilesController, type: :request do
         expect do
           post('/codt2022/profiles', params: { profile: profiles_params.merge(agreement_params) })
         end.to(change(Agreement, :count).by(+4))
-        expect(response.body).to(redirect_to('/codt2022/dashboard'))
-        # expect(response.body).to(redirect_to('/codt2022/timetables'))  # TODO: Need to uncomment after pre-event
+        expect(response.body).to(redirect_to('/codt2022/timetables'))  # TODO: Need to uncomment after pre-event
       end
     end
   end
