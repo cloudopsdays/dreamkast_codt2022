@@ -69,7 +69,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is opened' do
@@ -77,7 +76,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is closed' do
@@ -85,7 +83,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is archived' do
@@ -93,7 +90,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is video_enabled' do
@@ -101,7 +97,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_present, false
-
       end
     end
 
@@ -115,7 +110,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is opened' do
@@ -123,7 +117,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is closed' do
@@ -131,7 +124,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is archived' do
@@ -139,7 +131,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, true
         it_should_behave_like :video_is_not_present, false
-
       end
 
       context 'conference is video_enabled' do
@@ -147,7 +138,6 @@ RSpec.describe(TalksController, type: :controller) do
 
         it_should_behave_like :video_is_published_and_present_and_archived, false
         it_should_behave_like :video_is_not_present, false
-
       end
     end
   end
