@@ -47,10 +47,10 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to(edit_profile_path(id: @profile.id)) }
+        format.html { redirect_to(edit_profile_path(id: @profile.id), notice: '登録情報の変更が完了しました') }
         format.json { render(:show, status: :ok, location: @profile) }
       else
-        format.html { render(:edit) }
+        format.html { render(:edit, notice: '登録情報の変更時にエラーが発生しました') }
         format.json { render(json: @profile.errors, status: :unprocessable_entity) }
       end
     end
