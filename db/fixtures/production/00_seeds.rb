@@ -27,8 +27,8 @@ EOS
 
 ConferenceDay.seed(
   {id: 1, date: "2022-07-25", start_time: "13:00", end_time: "19:00", conference_id: 1, internal: false},
-  {id: 2, date: "2022-05-31", start_time: "19:00", end_time: "21:00", conference_id: 1, internal: true} #Pre event
-)
+  {id: 2, date: "2022-05-31", start_time: "19:00", end_time: "21:00", conference_id: 1, internal: true}, #Pre event
+  {id: 3, date: "2022-07-27", start_time: "10:00", end_time: "17:20", conference_id: 1, internal: true} #Closing event
 
 Track.seed(
   { id: 1,  conference_id: 1, number: 1, name: "大規模システム運用"},
