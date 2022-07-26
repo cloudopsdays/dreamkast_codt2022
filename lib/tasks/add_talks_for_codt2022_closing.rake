@@ -78,7 +78,7 @@ namespace :util do
       ABSTRACT
       { start_time: '17:10:00', end_time: '17:20:00', title: 'クロージング',
         abstract: '水野 伸太郎 （日本OpenStackユーザ会 会長/日本電信電話株式会社）' },
-      { start_time: '19:00:00', end_time: '20:00:00', title: 'Cloud Operator Days Tokyo 2022 クロージングイベントは終了しました', abstract: 'intermission' }
+      { start_time: '17:20:00', end_time: '20:00:00', title: 'Cloud Operator Days Tokyo 2022 クロージングイベントは終了しました', abstract: 'intermission' }
     ]
 
     talks.each do |param|
