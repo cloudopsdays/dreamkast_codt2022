@@ -19,9 +19,6 @@ class TracksController < ApplicationController
 
   def waiting
     @conference = Conference.includes(:talks).find_by(abbr: event_name)
-    if @profile.talks.count.zero?
-      redirect_to("/#{event_name}/timetables")
-    end
 
     if @conference.opened?
       redirect_to(tracks_path)
